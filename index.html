@@ -2074,6 +2074,7 @@ function adminMarketing(){
      <div class="field"><label>Product</label><select id="mkt_prod">${opts||'<option>(add a product first)</option>'}</select></div>
      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 2px">
        <button class="btn loom sm" onclick="genMarketing('post')">✨ Instagram + Pinterest post</button>
+       <button class="btn ghost sm" onclick="genMarketing('image')">📸 Image prompts</button>
        <button class="btn ghost sm" onclick="genMarketing('plan')">🗓 7-day content plan</button>
        <button class="btn ghost sm" onclick="genMarketing('campaign')">💡 Campaign ideas</button>
      </div>
@@ -2098,6 +2099,10 @@ function renderMktResult(kind,d){
     const wk=d.week||[];
     return wk.length?wk.map(x=>`<div class="panel" style="padding:12px 14px;margin:0 0 10px"><b>${esc(x.day||'')} · ${esc(x.platform||'')}</b><p class="hint" style="margin:4px 0">${esc(x.idea||'')}</p>${mktBlock('Caption',x.caption)}</div>`).join(''):'<p class="hint">No plan returned — try again.</p>';
   }
+  if(kind==='image'){
+    const ps=d.prompts||[];
+    return ps.length?'<p class="hint" style="margin:0 0 10px">Paste any of these into an AI image generator (Midjourney, DALL·E, Firefly).</p>'+ps.map(x=>mktBlock('📸 '+(x.label||'Image prompt'),x.prompt)).join(''):'<p class="hint">No prompts returned — try again.</p>';
+  }
   const cs=d.campaigns||[];
   return cs.length?cs.map(c=>`<div class="panel" style="padding:12px 14px;margin:0 0 10px"><b>${esc(c.name||'')}</b><p style="margin:4px 0"><i>${esc(c.hook||'')}</i></p><p class="hint" style="margin:4px 0">${esc(c.angle||'')}</p><p class="hint">Channels: ${esc((c.channels||[]).join(', '))}</p></div>`).join(''):'<p class="hint">No ideas returned — try again.</p>';
 }
@@ -2119,6 +2124,8 @@ async function genMarketing(kind){
       prompt=`Brand: ${brand}\nBrand voice: ${voice}\n${ctx}\n\nWrite social posts to sell this product. Return ONLY valid JSON, no markdown:\n{"instagram":{"caption":"engaging caption, 1-2 emojis, a clear CTA","hashtags":["8-12 relevant tags, no # symbol"]},"pinterest":{"title":"keyword-rich title under 100 chars","description":"SEO-friendly description around 200 chars","hashtags":["5-8 tags, no # symbol"]},"image_idea":"one-line styling/photo concept"}`;
     }else if(kind==='plan'){
       prompt=`Brand: ${brand}\nBrand voice: ${voice}\nCatalog highlights: ${(DB.products||[]).slice(0,8).map(x=>x.name).join(', ')}\n\nCreate a 7-day social content plan mixing Instagram and Pinterest. Return ONLY valid JSON, no markdown:\n{"week":[{"day":"Monday","platform":"Instagram","idea":"short concept","caption":"ready-to-post caption"}]}`;
+    }else if(kind==='image'){
+      prompt=`Brand: ${brand}\nBrand voice: ${voice}\n${ctx}\n\nWrite 3 detailed, photorealistic prompts I can paste into an AI image generator (Midjourney, DALL-E, Firefly) to make marketing images for this product. Cover: (1) a clean hero/studio shot, (2) a styled in-room lifestyle scene, (3) a close-up texture/detail shot. Each prompt should specify composition, lighting, setting, colors and mood. Return ONLY valid JSON, no markdown:\n{"prompts":[{"label":"Hero shot","prompt":"..."},{"label":"Lifestyle scene","prompt":"..."},{"label":"Texture detail","prompt":"..."}]}`;
     }else{
       prompt=`Brand: ${brand}\nBrand voice: ${voice}\nCatalog: ${(DB.products||[]).slice(0,10).map(x=>x.name).join(', ')}\n\nPropose 3 distinct marketing campaign ideas for this home-textiles store. Return ONLY valid JSON, no markdown:\n{"campaigns":[{"name":"...","hook":"one-line hook","angle":"why it works in 1-2 sentences","channels":["Instagram","Pinterest","Email"]}]}`;
     }
