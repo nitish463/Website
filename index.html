@@ -829,6 +829,13 @@ function invTracked(sku){return Object.prototype.hasOwnProperty.call(invMap(),sk
 function invQty(sku){var v=invMap()[sku];var n=typeof v==='number'?v:parseInt(v,10);return isNaN(n)?0:n;}
 function invInStock(sku,fallback){return invTracked(sku)?invQty(sku)>0:fallback;}
 function simpleInStock(p){return invInStock(p.id,p.inStock!==false);}
+function stockLabel(sku,inStock){
+  if(!invTracked(sku))return inStock?'In stock — ships in 2–4 days':'Out of stock';
+  var q=invQty(sku);
+  if(q<=0)return 'Out of stock';
+  if(q<=5)return 'Only '+q+' left — order soon';
+  return 'In stock — '+q+' available';
+}
 function productFullyOut(p){
   if(isCollection(p)){
     var any=false;
@@ -1525,6 +1532,7 @@ function renderSimpleProduct(p){
     <h1>${esc(p.name)}</h1>
     <div class="price"><span class="now ${onSale?'on':''}" style="font-weight:600">${money(onSale?p.salePrice:p.price)}</span>${onSale?`<span class="was">${money(p.price)}</span>`:''}</div>
     <p class="desc">${esc(p.description)}</p>
+    <div class="stocknote ${simpleInStock(p)?'in':'out'}">${'● '+stockLabel(p.id,simpleInStock(p))}</div>
     <div class="qtyrow">
       <div class="stepper"><button onclick="stepQty(-1)">–</button><span id="pdpQty">1</span><button onclick="stepQty(1)">+</button></div>
       ${snipEnabled()&&simpleInStock(p)
@@ -1536,7 +1544,7 @@ function renderSimpleProduct(p){
   const specs=[
     {label:'Material',value:p.material},
     {label:'Origin',value:p.origin},
-    {label:'Availability',value:simpleInStock(p)?'In stock — ships in 2–4 days':'Out of stock'}
+    {label:'Availability',value:stockLabel(p.id,simpleInStock(p))}
   ];
   const details=pdpTabs(specs,p.features,(p.care||'').split('\n'));
   return pdpShell(p,cat,sub,gallery,info,details);
@@ -1588,7 +1596,7 @@ function renderCollection(p){
     <p class="desc">${esc(p.description)}</p>
     ${swatches}
     ${sizes}
-    <div class="stocknote ${v.inStock?'in':'out'}">${v.inStock?'● In stock — ships in 2–4 days':'● This option is currently sold out'}</div>
+    <div class="stocknote ${v.inStock?'in':'out'}">${'● '+(v.inStock?stockLabel(v.sku,true):'This option is currently sold out')}</div>
     <div class="qtyrow">
       <div class="stepper"><button onclick="stepQty(-1)">–</button><span id="pdpQty">1</span><button onclick="stepQty(1)">+</button></div>
       ${snipEnabled()
@@ -2340,13 +2348,55 @@ function adminDashboard(){
            <td>${esc(p.name)}</td><td>${esc(c?c.name:'—')}</td><td>${r.min===r.max?money(r.min):money(r.min)+'–'+money(r.max)}</td></tr>`}).join('')}
      </tbody></table>
    </div>
+   <div class="panel">
+     <h3>Backup &amp; data</h3>
+     <p class="muted" style="margin:-4px 0 12px;font-size:13.5px">Your store is saved in <b>this browser only</b>. Export a backup regularly — and always before big changes or switching computers — so you never lose your catalog.</p>
+     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+       <button class="btn loom sm" onclick="exportBackup()">⬇ Export backup (.json)</button>
+       <input type="file" id="imp_file" accept=".json,application/json" style="font-size:13px">
+       <button class="btn ghost sm" onclick="importBackup()">⬆ Import backup</button>
+     </div>
+   </div>
    <div class="panel" style="border-color:#e6d6c8;background:#fbf6f0">
-     <h3 style="color:var(--clay)">Reset</h3>
-     <p class="muted" style="margin:0 0 14px;font-size:13.5px">Restore the original sample catalog and content. This replaces everything.</p>
-     <button class="btn ghost sm" style="border-color:var(--clay);color:var(--clay)" onclick="resetAll()">Reset to sample data</button>
+     <h3 style="color:var(--clay)">Danger zone</h3>
+     <p class="muted" style="margin:0 0 12px;font-size:13.5px">Export a backup first — these can't be undone.</p>
+     <div style="display:flex;gap:10px;flex-wrap:wrap">
+       <button class="btn ghost sm" style="border-color:var(--clay);color:var(--clay)" onclick="emptyStore()">Empty the store (start blank)</button>
+       <button class="btn ghost sm" style="border-color:var(--clay);color:var(--clay)" onclick="resetAll()">Reset to sample data</button>
+     </div>
    </div>`;
 }
 async function resetAll(){if(!confirm('Reset everything to sample data?'))return;DB=seedData();await persist();paintChrome();renderAdmin();toast('Reset to sample data');}
+function blankCatalog(){DB.products=[];DB.categories=[];DB.promos=[];DB.inventory={};DB.subscribers=[];}
+async function emptyStore(){
+  if(!confirm('Empty the store?\n\nThis deletes ALL products, categories, promo codes and inventory so you can load your own. Your brand settings, Snipcart keys and AI settings are kept.\n\nThis cannot be undone — export a backup first.'))return;
+  blankCatalog();await persist();paintChrome();renderAdmin();toast('Store emptied — ready for your products');
+}
+function exportBackup(){
+  try{
+    var data=JSON.stringify(DB,null,2);
+    var d=new Date();var stamp=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    var blob=new Blob([data],{type:'application/json'});var u=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=u;a.download='home-weavers-backup-'+stamp+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);
+    toast('Backup downloaded');
+  }catch(e){toast('Could not export backup');}
+}
+function importBackup(){
+  var inp=document.getElementById('imp_file');
+  if(!inp||!inp.files||!inp.files[0]){toast('Choose a backup file first');return;}
+  var fr=new FileReader();
+  fr.onload=function(){
+    try{
+      var obj=JSON.parse(fr.result);
+      if(!obj||typeof obj!=='object'||!Array.isArray(obj.products)||!Array.isArray(obj.categories)){toast('That does not look like a Home Weavers backup');return;}
+      if(!confirm('Replace the current store with this backup?\n\nThis overwrites everything currently in the store.'))return;
+      DB=obj;DB.inventory=DB.inventory||{};DB.marketing=DB.marketing||{};
+      persist().then(function(){paintChrome();renderAdmin();toast('Backup restored');});
+    }catch(e){toast('Could not read that file');}
+  };
+  fr.onerror=function(){toast('Could not read that file');};
+  fr.readAsText(inp.files[0]);
+}
 
 /* ---- storefront settings ---- */
 function adminStorefront(){
