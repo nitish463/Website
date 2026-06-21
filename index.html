@@ -2,6 +2,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home Weavers — Woven for the way you live</title>
+<script>
+  /* GitHub Pages SPA fallback: 404.html redirects deep links to "?/path"; decode it back
+     into a real path before the app boots so refreshes and shared links work. */
+  (function(l){
+    if(l.search.charAt(1)==='/'){
+      var decoded=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&');}).join('?');
+      window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash);
+    }
+  })(window.location);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -591,7 +601,7 @@
       </div>
       <div class="fbottom">
         <span>© <span id="yr"></span> Home Weavers. A demo storefront.</span>
-        <span class="fbottom-links"><a href="#/page/contact-us">Contact us</a><a href="#/page/shipping-returns">Shipping &amp; returns</a><a href="#/" onclick="goAdmin()">Store admin</a></span>
+        <span class="fbottom-links"><a href="#/page/contact-us">Contact us</a><a href="#/page/shipping-returns">Shipping &amp; returns</a><a href="#/admin">Store admin</a></span>
       </div>
     </div>
   </footer>
@@ -796,14 +806,14 @@ function weaveSwatch(color,label){
   </svg>`;
   return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
 }
-function imgFor(item,label){return item && item.image ? item.image : weaveSwatch(item&&item.swatch,label)}
+function imgFor(item,label){return item && item.image ? assetUrl(item.image) : weaveSwatch(item&&item.swatch,label)}
 
 /* ---------- collection / variant helpers ---------- */
 function isCollection(p){return Array.isArray(p.options)&&p.options.length>0&&optColor(p)&&optSize(p)}
 function optColor(p){return (p.options||[]).find(o=>o.type==='color')}
 function optSize(p){return (p.options||[]).find(o=>o.type==='size')}
 function vKey(colorId,sizeId){return colorId+'__'+sizeId}
-function colorPhotos(colorVal){const imgs=(colorVal&&colorVal.images||[]).filter(Boolean);return imgs.length?imgs:[weaveSwatch(colorVal&&colorVal.hex,colorVal&&colorVal.label)]}
+function colorPhotos(colorVal){const imgs=(colorVal&&colorVal.images||[]).filter(Boolean).map(assetUrl);return imgs.length?imgs:[weaveSwatch(colorVal&&colorVal.hex,colorVal&&colorVal.label)]}
 function genSku(p,colorVal,sizeVal){
   const pre=(p.skuPrefix||p.name||'HW').replace(/[^A-Za-z0-9]/g,'').slice(0,4).toUpperCase()||'HW';
   const c=(colorVal&&colorVal.label||'').replace(/[^A-Za-z0-9]/g,'').slice(0,3).toUpperCase();
@@ -825,10 +835,10 @@ function priceRange(p){
   optColor(p).values.forEach(c=>optSize(p).values.forEach(s=>{const r=resolveVariant(p,c.id,s.id);vals.push(r.salePrice!=null&&r.salePrice<r.price?r.salePrice:r.price);}));
   return{min:Math.min.apply(null,vals),max:Math.max.apply(null,vals)};
 }
-function colorPrimary(c){const raw=(c&&c.images)||[];const u=raw[(c&&c.primary)||0]||raw.find(Boolean);return u||weaveSwatch(c&&c.hex,c&&c.label);}
+function colorPrimary(c){const raw=(c&&c.images)||[];const u=raw[(c&&c.primary)||0]||raw.find(Boolean);return u?assetUrl(u):weaveSwatch(c&&c.hex,c&&c.label);}
 function primaryImage(p){
   if(isCollection(p)){const c=optColor(p).values[0];return colorPrimary(c);}
-  const raw=p.images||[];const u=raw[p.primary||0]||raw.find(Boolean);return u||imgFor(p,p.name);
+  const raw=p.images||[];const u=raw[p.primary||0]||raw.find(Boolean);return u?assetUrl(u):imgFor(p,p.name);
 }
 
 /* ---------- storage layer ----------
@@ -864,12 +874,44 @@ let route={name:'home',params:{}};
 
 async function persist(){await saveStore(DB);}
 
-/* ---------- routing ---------- */
-function parseHash(){
-  const h=location.hash.replace(/^#/,'')||'/';
-  const [pathPart,queryPart]=h.split('?');
-  const parts=pathPart.split('/').filter(Boolean);
-  const q={}; if(queryPart) queryPart.split('&').forEach(kv=>{const[k,v]=kv.split('=');q[k]=decodeURIComponent(v||'')});
+/* ---------- routing (History API, path-based) ---------- */
+// Base path: on GitHub Pages project sites the first path segment is the repo
+// (e.g. /Website/). Locally or at domain root it is '/'.
+function computeBase(){
+  try{
+    var segs=location.pathname.split('/').filter(Boolean);
+    if(/github\.io$/i.test(location.hostname) && segs.length) return '/'+segs[0]+'/';
+  }catch(e){}
+  return '/';
+}
+const BASE=computeBase();
+// Build an in-app href from an app path like '/product/x' (with optional ?query).
+function link(p){
+  p=String(p==null?'/':p);
+  if(/^(https?:|mailto:|tel:|#)/i.test(p)) return p; // external/hash untouched
+  if(p.charAt(0)==='/') p=p.slice(1);
+  return BASE+p;
+}
+// Resolve an asset reference (image/video/feed). Full URLs & data URIs pass through;
+// root-relative or bare-relative local paths are anchored to BASE so they work on subpaths.
+function assetUrl(p){
+  p=String(p==null?'':p);
+  if(!p) return p;
+  if(/^(https?:|data:|blob:)/i.test(p)) return p;
+  if(p.charAt(0)==='/') p=p.slice(1);
+  return BASE+p;
+}
+function navigate(p){
+  history.pushState({},'',link(p));
+  router();
+}
+function parseRoute(){
+  var path=location.pathname;
+  if(path.indexOf(BASE)===0) path=path.slice(BASE.length);
+  path=path.replace(/^\/+/,'');
+  var parts=path.split('/').filter(Boolean);
+  var q={};
+  try{new URLSearchParams(location.search).forEach(function(v,k){q[k]=v;});}catch(e){}
   if(parts[0]==='admin') return {name:'admin',params:{}};
   if(parts[0]==='category') return {name:'category',params:{slug:parts[1],sub:q.sub}};
   if(parts[0]==='product') return {name:'product',params:{slug:parts[1]}};
@@ -877,7 +919,7 @@ function parseHash(){
   return {name:'home',params:{}};
 }
 function router(){
-  route=parseHash();
+  route=parseRoute();
   heroPause();
   if(route.name==='admin'){enterAdmin();return;}
   document.body.classList.remove('admin-mode');
@@ -889,6 +931,32 @@ function router(){
   window.scrollTo(0,0);
   observeReveals();
 }
+// Intercept in-app link clicks for SPA navigation.
+// '#/...' links become path navigation; Snipcart's own '#' links and externals are left alone.
+function wireLinkClicks(){
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+    var a=e.target.closest?e.target.closest('a'):null;
+    if(!a||(a.closest&&a.closest('#snipcart'))) return; // leave Snipcart UI alone
+    var href=a.getAttribute('href');
+    if(!href||a.target==='_blank'||a.hasAttribute('download')) return;
+    if(href.charAt(0)==='#'){
+      if(href.charAt(1)==='/'){e.preventDefault();navigate(href.slice(1));} // '#/x' -> '/x'
+      return; // other '#...' (incl. Snipcart) untouched
+    }
+    if(/^(mailto:|tel:|https?:)/i.test(href)) return;
+    var url;try{url=new URL(a.href,location.href);}catch(err){return;}
+    if(url.origin!==location.origin||url.pathname.indexOf(BASE)!==0) return;
+    e.preventDefault();
+    history.pushState({},'',url.pathname+url.search);
+    router();
+  });
+}
+// On load, normalize any legacy '#/...' deep-link into a real path so Snipcart never sees app hashes.
+function normalizeEntryHash(){
+  var h=location.hash;
+  if(h&&h.charAt(1)==='/'){history.replaceState({},'',link(h.slice(1)));}
+}
 
 /* ---------- chrome (header/footer/nav) ---------- */
 function brandMarkHTML(forceIcon){
@@ -896,7 +964,7 @@ function brandMarkHTML(forceIcon){
   const tag=bd.tagline?'<small class="tagline">'+esc(bd.tagline)+'</small>':'';
   const useImg=bd.logoImage&&!forceIcon;
   const graphic=useImg
-    ? '<img class="logo-img" src="'+escAttr(bd.logoImage)+'" alt="'+escAttr(bd.name||'Home')+'" onerror="logoImgFail(this)">'
+    ? '<img class="logo-img" src="'+escAttr(assetUrl(bd.logoImage))+'" alt="'+escAttr(bd.name||'Home')+'" onerror="logoImgFail(this)">'
     : SVG.logo;
   const hideName=useImg&&bd.hideName;
   const textCol=hideName?tag:'<span id="brandName">'+esc(bd.name||'')+'</span>'+tag;
@@ -928,7 +996,7 @@ function paintChrome(){
   document.getElementById('footLinks').innerHTML=
     `<div class="fcol"><h5>Shop</h5>${shopLinks}</div>`+
     pageCol('service','Customer service')+
-    pageCol('company','Our company','<a href="#/" onclick="goAdmin()">Store admin</a>');
+    pageCol('company','Our company','<a href="#/admin">Store admin</a>');
   const soc=DB.social||{};
   const socLink=(url,svg,label)=>`<a href="${url?escAttr(url):'#'}"${url?' target="_blank" rel="noopener"':''} aria-label="${label}" title="${label}">${svg}</a>`;
   const fsoc=document.getElementById('footSocial');
@@ -1509,7 +1577,7 @@ function addToCart(id,qty,colorId,sizeId){
   const p=DB.products.find(x=>x.id===id);if(!p)return;
   qty=parseInt(qty||1,10)||1;
   if(isCollection(p)){
-    if(!colorId||!sizeId){location.hash='#/product/'+p.slug;return;}
+    if(!colorId||!sizeId){navigate('/product/'+p.slug);return;}
     const v=resolveVariant(p,colorId,sizeId);
     if(!v.inStock){toast('That option is sold out');return;}
     const line=p.id+'|'+colorId+'|'+sizeId;
@@ -1626,7 +1694,7 @@ function openCart(){document.getElementById('cartDrawer').classList.add('open');
 /* ---------- Snipcart payments integration ---------- */
 function snipEnabled(){const s=DB&&DB.snipcart;return !!(s&&s.enabled&&(s.apiKey||'').trim());}
 function snipCat(s){return String(s||'').replace(/[^A-Za-z0-9 \-]/g,'').replace(/\s+/g,' ').trim();}
-function snipFeedUrl(){const s=DB.snipcart||{};return (s.feedUrl||'/products.json');}
+function snipFeedUrl(){const s=DB.snipcart||{};var u=(s.feedUrl||'').trim();if(!u)return assetUrl('products.json');return /^https?:/i.test(u)?u:assetUrl(u);}
 function snipDataAttrs(o){
   let a=`data-item-id="${escAttr(o.id)}" data-item-name="${escAttr(o.name)}" data-item-price="${(+o.price||0).toFixed(2)}" data-item-url="${escAttr(snipFeedUrl())}"`;
   if(o.image)a+=` data-item-image="${escAttr(o.image)}"`;
@@ -1788,7 +1856,7 @@ let editingCategory=null;
 let editingPage=null;
 let bDraft=null; // working copy for hero slides + band
 
-function goAdmin(){location.hash='#/admin';}
+function goAdmin(){navigate('/admin');}
 function enterAdmin(){
   document.body.classList.add('admin-mode');
   if(!adminAuthed){renderLogin();return;}
@@ -1805,7 +1873,7 @@ function renderLogin(){
      </div>
      <button class="btn loom block" onclick="tryLogin()">Sign in</button>
      <div class="demo">Demo password: <b>${esc(DB.password)}</b></div>
-     <p style="margin:16px 0 0"><a class="link-u" href="#/" onclick="exitAdmin()">← Back to store</a></p>
+     <p style="margin:16px 0 0"><a class="link-u" href="#/">← Back to store</a></p>
    </div></div>`;
   setTimeout(()=>{const i=document.getElementById('adpass');if(i)i.focus();},60);
 }
@@ -1814,7 +1882,7 @@ function tryLogin(){
   if(v===DB.password){adminAuthed=true;renderAdmin();}
   else toast('Incorrect password');
 }
-function exitAdmin(){document.body.classList.remove('admin-mode');location.hash='#/';}
+function exitAdmin(){document.body.classList.remove('admin-mode');navigate('/');}
 function setTab(t){adminTab=t;editingProduct=null;editingCategory=null;editingPage=null;bDraft=null;renderAdmin();}
 
 function renderAdmin(){
@@ -2747,7 +2815,9 @@ async function boot(){
     if(wf){DB.products.unshift(wf);await saveStore(DB);}
   }
   paintChrome();
-  window.addEventListener('hashchange',router);
+  normalizeEntryHash();
+  window.addEventListener('popstate',router);
+  wireLinkClicks();
   window.addEventListener('resize',initRails);
   window.addEventListener('resize',initGallery);
   router();

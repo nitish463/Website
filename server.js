@@ -42,6 +42,16 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) {
+      // SPA fallback: if the request has no file extension, it's an app route
+      // (e.g. /product/waterford) — serve index.html so client routing handles it.
+      if (!path.extname(pathname)) {
+        fs.readFile(path.join(ROOT, 'index.html'), (e2, buf) => {
+          if (e2) { res.writeHead(404); res.end('Not found'); return; }
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(buf);
+        });
+        return;
+      }
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end('<h1>404 — Not found</h1><p><a href="/">Back to home</a></p>');
       return;

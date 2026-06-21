@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Home Weavers</title>
+<script>
+  /* Single-Page-App fallback for GitHub Pages.
+     A direct hit on /Website/product/x has no file, so Pages serves this 404.
+     We rewrite it to /Website/?/product/x and bounce to index.html, which decodes
+     it back into a real path. pathSegmentsToKeep = number of leading path parts to
+     preserve (1 keeps the repo segment, e.g. /Website/). Set to 0 if hosting at root. */
+  (function(){
+    var pathSegmentsToKeep = 1;
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  })();
+</script>
