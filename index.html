@@ -824,14 +824,43 @@ function genSku(p,colorVal,sizeVal){
   const s=(sizeVal&&sizeVal.label||'').replace(/[^A-Za-z0-9]/g,'').slice(0,6).toUpperCase();
   return [pre,c,s].filter(Boolean).join('-');
 }
+function invMap(){DB.inventory=DB.inventory||{};return DB.inventory;}
+function invTracked(sku){return Object.prototype.hasOwnProperty.call(invMap(),sku);}
+function invQty(sku){var v=invMap()[sku];var n=typeof v==='number'?v:parseInt(v,10);return isNaN(n)?0:n;}
+function invInStock(sku,fallback){return invTracked(sku)?invQty(sku)>0:fallback;}
+function simpleInStock(p){return invInStock(p.id,p.inStock!==false);}
+function productFullyOut(p){
+  if(isCollection(p)){
+    var any=false;
+    (optColor(p).values||[]).forEach(function(c){(optSize(p).values||[]).forEach(function(s){if(resolveVariant(p,c.id,s.id).inStock)any=true;});});
+    return !any;
+  }
+  return !simpleInStock(p);
+}
+function allSkus(){
+  var out=[];
+  (DB.products||[]).forEach(function(p){
+    if(isCollection(p)){
+      (optColor(p).values||[]).forEach(function(c){(optSize(p).values||[]).forEach(function(s){
+        var v=resolveVariant(p,c.id,s.id);
+        out.push({sku:v.sku,product:p.name,variant:c.label+' / '+s.label,pid:p.id});
+      });});
+    }else{
+      out.push({sku:p.id,product:p.name,variant:'',pid:p.id});
+    }
+  });
+  return out;
+}
 function resolveVariant(p,colorId,sizeId){
   const color=optColor(p).values.find(v=>v.id===colorId)||optColor(p).values[0];
   const size=optSize(p).values.find(v=>v.id===sizeId)||optSize(p).values[0];
   const ov=(p.variants&&p.variants[vKey(color.id,size.id)])||{};
   const price = ov.price!=null?ov.price : (size.price!=null?size.price : p.basePrice);
   const salePrice = ov.salePrice!=null?ov.salePrice : (size.salePrice!=null?size.salePrice : (p.baseSalePrice!=null?p.baseSalePrice:null));
-  const inStock = ov.inStock!=null?ov.inStock : (p.inStock!==false);
-  return {color,size,price,salePrice,inStock,images:colorPhotos(color),sku:ov.sku||genSku(p,color,size)};
+  const sku=ov.sku||genSku(p,color,size);
+  const baseStock = ov.inStock!=null?ov.inStock : (p.inStock!==false);
+  const inStock = invInStock(sku,baseStock);
+  return {color,size,price,salePrice,inStock,images:colorPhotos(color),sku};
 }
 function priceRange(p){
   if(!isCollection(p)){const eff=p.salePrice!=null&&p.salePrice<p.price?p.salePrice:p.price;return{min:eff,max:eff};}
@@ -1014,19 +1043,20 @@ function paintChrome(){
 function productCard(p){
   const cat=DB.categories.find(c=>c.id===p.categoryId);
   const coll=isCollection(p);
-  const badge=p.badge?`<span class="badge ${/sale/i.test(p.badge)?'sale':''}">${esc(p.badge)}</span>`:'';
+  const out=productFullyOut(p);
+  const badge=out?`<span class="badge" style="background:var(--ink);color:#fff">Out of stock</span>`:(p.badge?`<span class="badge ${/sale/i.test(p.badge)?'sale':''}">${esc(p.badge)}</span>`:'');
   let priceHtml,action,swatches='';
   if(coll){
     const r=priceRange(p);
     priceHtml = r.min===r.max?`<span class="now">${money(r.min)}</span>`
       :`<span class="muted" style="font-size:12px;letter-spacing:.04em">from</span> <span class="now">${money(r.min)}</span>`;
-    action=`<a class="btn block sm loom" href="#/product/${p.slug}">Select options</a>`;
+    action=out?`<button class="btn block sm" disabled>Out of stock</button>`:`<a class="btn block sm loom" href="#/product/${p.slug}">Select options</a>`;
     const cols=optColor(p).values;
     swatches=`<div class="cardswatch">${cols.slice(0,6).map(c=>`<span title="${escAttr(c.label)}" style="background:${c.hex}"></span>`).join('')}${cols.length>6?`<em>+${cols.length-6}</em>`:''}</div>`;
   }else{
     const onSale=p.salePrice!=null&&p.salePrice<p.price;
     priceHtml=`<span class="now ${onSale?'on':''}">${money(onSale?p.salePrice:p.price)}</span>${onSale?`<span class="was">${money(p.price)}</span>`:''}`;
-    action=`<button class="btn block sm loom" onclick="addToCart('${p.id}')">Add to cart</button>`;
+    action=out?`<button class="btn block sm" disabled>Out of stock</button>`:`<button class="btn block sm loom" onclick="addToCart('${p.id}')">Add to cart</button>`;
   }
   return `<article class="pcard reveal">
     <div class="imgwrap">
@@ -1497,14 +1527,16 @@ function renderSimpleProduct(p){
     <p class="desc">${esc(p.description)}</p>
     <div class="qtyrow">
       <div class="stepper"><button onclick="stepQty(-1)">–</button><span id="pdpQty">1</span><button onclick="stepQty(1)">+</button></div>
-      ${snipEnabled()&&p.inStock
+      ${snipEnabled()&&simpleInStock(p)
         ? `<button id="buyBtn" class="btn loom snipcart-add-item" style="flex:1;justify-content:center" data-item-quantity="1" ${snipDataAttrs({id:p.id,name:p.name,price:(p.salePrice!=null&&p.salePrice<p.price?p.salePrice:p.price),image:primaryImage(p),description:p.description,weight:p.weight,categories:[snipCat(cat&&cat.name),snipCat(sub&&sub.name)].filter(Boolean)})}>Add to cart</button>`
-        : `<button class="btn loom" style="flex:1;justify-content:center" onclick="addToCart('${p.id}',document.getElementById('pdpQty').textContent)">${p.inStock?'Add to cart':'Notify me'}</button>`}
+        : (simpleInStock(p)
+          ? `<button class="btn loom" style="flex:1;justify-content:center" onclick="addToCart('${p.id}',document.getElementById('pdpQty').textContent)">Add to cart</button>`
+          : `<button class="btn loom" style="flex:1;justify-content:center" disabled>Out of stock</button>`)}
     </div>`;
   const specs=[
     {label:'Material',value:p.material},
     {label:'Origin',value:p.origin},
-    {label:'Availability',value:p.inStock?'In stock — ships in 2–4 days':'Backordered'}
+    {label:'Availability',value:simpleInStock(p)?'In stock — ships in 2–4 days':'Out of stock'}
   ];
   const details=pdpTabs(specs,p.features,(p.care||'').split('\n'));
   return pdpShell(p,cat,sub,gallery,info,details);
@@ -1591,6 +1623,7 @@ function addToCart(id,qty,colorId,sizeId){
     updateCartUI();toast(p.name+' added to cart');openCart();return;
   }
   const line=p.id;const price=p.salePrice!=null&&p.salePrice<p.price?p.salePrice:p.price;
+  if(!simpleInStock(p)){toast('This item is out of stock');return;}
   const ex=cart.find(c=>c.line===line);
   if(ex)ex.qty+=qty; else cart.push({line,id:p.id,name:p.name,variant:'',price,image:imgFor(p,p.name),qty});
   updateCartUI();toast(p.name+' added to cart');openCart();
@@ -1778,7 +1811,7 @@ function snipFeed(){
         base.push(e);
       }));
     }else{
-      if(p.inStock===false)return;
+      if(!simpleInStock(p))return;
       const price=(p.salePrice!=null&&p.salePrice<p.price)?p.salePrice:p.price;
       const e={id:p.id,name:p.name,price:+(+price).toFixed(2),url,image:primaryImage(p),description:(p.description||'').slice(0,180),categories:cats};
       if(p.weight!=null)e.dimensions={weight:Math.round(+p.weight)};
@@ -1920,6 +1953,7 @@ function renderAdmin(){
             : adminTab==='banner'?adminBanner()
             : adminTab==='categories'?adminCategories()
             : adminTab==='products'?adminProducts()
+            : adminTab==='inventory'?adminInventory()
             : adminTab==='promotions'?adminPromotions()
             : adminTab==='marketing'?adminMarketing()
             : adminTab==='pages'?adminPages()
@@ -1943,6 +1977,7 @@ function renderAdmin(){
         <div class="sgroup">Catalog</div>
         ${navBtn('categories','Categories',ICONS.cats)}
         ${navBtn('products','Products',ICONS.prod)}
+        ${navBtn('inventory','Inventory',ICONS.prod)}
         <div class="sgroup">Selling</div>
         ${navBtn('promotions','Promotions',ICONS.promo)}
         ${navBtn('marketing','Marketing',ICONS.market)}
@@ -1980,7 +2015,9 @@ function saveMarketing(){
   persist();toast('Marketing settings saved');
 }
 let mktReviewOut='';
-function ensureMkt(){DB.marketing=DB.marketing||{};DB.marketing.tasks=DB.marketing.tasks||{};DB.marketing.log=DB.marketing.log||[];}
+function ensureMkt(){DB.marketing=DB.marketing||{};DB.marketing.tasks=DB.marketing.tasks||{};DB.marketing.log=DB.marketing.log||[];DB.marketing.operator=DB.marketing.operator||{};DB.marketing.goal=DB.marketing.goal||{amount:5000000,weeks:156,startISO:todayKey()};}
+function goalWeek(){var g=(DB.marketing&&DB.marketing.goal)||{};var start=g.startISO?new Date(g.startISO):new Date();var now=new Date();var diff=Math.floor((now-start)/(7*24*3600*1000));var w=Math.max(1,diff+1);return Math.min(w,g.weeks||156);}
+function goalPhase(w){var year=Math.min(3,Math.ceil(w/52));var weekInYear=w-(year-1)*52;var q=Math.min(4,Math.ceil(weekInYear/13));var names={1:'Foundation & First Traction',2:'Scale the Engine',3:'Compound to $5M'};return {year:year,quarter:q,label:'Year '+year+' · Q'+q+' — '+(names[year]||'')};}
 function todayKey(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 async function genDailyTasks(){
   ensureMkt();
@@ -1998,20 +2035,37 @@ async function genDailyTasks(){
   }catch(e){if(box)box.innerHTML='<div class="panel" style="border-color:var(--clay)"><b>Couldn\'t plan today.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';}
 }
 function toggleTask(id){ensureMkt();var arr=DB.marketing.tasks[todayKey()]||[];var t=arr.find(x=>x.id===id);if(t){t.done=!t.done;persist();renderAdmin();}}
-async function makeTask(id){
+function makeTask(id){ensureMkt();var arr=DB.marketing.tasks[todayKey()]||[];var t=arr.find(x=>x.id===id);if(!t)return;return makeFor(t.text,'mk_'+id);}
+async function makeFor(taskText,slotId){
   ensureMkt();
-  var arr=DB.marketing.tasks[todayKey()]||[];
-  var t=arr.find(x=>x.id===id);if(!t)return;
-  var slot=document.getElementById('mk_'+id);if(!slot)return;
+  var slot=document.getElementById(slotId);if(!slot)return;
   slot.innerHTML='<p class="hint">✨ Creating this for you…</p>';
   var brand=(DB.brand&&DB.brand.name)||'our store';
   var voice=(DB.marketing&&DB.marketing.voice)||'';
   var prods=(DB.products||[]).slice(0,12).map(function(p){return p.name;}).join(', ');
-  var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\n\nHere is one marketing task for today:\n"'+t.text+'"\n\nProduce the FINISHED, ready-to-use deliverable for this exact task. Decide the format from the task:\n- Photo or written post: give caption, hashtags, and an image_prompt.\n- Video or Reel: give caption, hashtags, and a "reel" shot-by-shot plan the user films on a phone in a few minutes (they film their REAL product — do not try to generate video). Leave image_prompt empty.\nReturn ONLY valid JSON, no markdown:\n{"format":"photo|video|other","caption":"ready-to-post caption with a clear CTA","hashtags":["relevant tag without the # symbol"],"image_prompt":"detailed photorealistic image prompt, or empty string if this is a video task","reel":{"hook":"strong opening idea","audio":"a trending-audio style suggestion","shots":[{"time":"0-3s","action":"exactly what to film","onscreen":"on-screen text caption"}],"cta":"closing call to action"}}';
+  var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\n\nHere is one marketing task:\n"'+taskText+'"\n\nProduce the FINISHED, ready-to-use deliverable for this exact task. Decide the format from the task:\n- Photo or written post: give caption, hashtags, and an image_prompt.\n- Video or Reel: give caption, hashtags, and a "reel" shot-by-shot plan the user films on a phone (they film their REAL product — do not try to generate video). Leave image_prompt empty.\n- Paid ad: give ad copy (primary text, a short headline, a description), a target-audience suggestion, and an image_prompt.\n- Promo / discount / banner / seasonal store change: in "store" give a discount_code (short, e.g. XMAS20), discount_percent (number), announcement (one-line announcement-bar text), hero_headline, hero_subhead, and an image_prompt for the seasonal banner.\nReturn ONLY valid JSON, no markdown:\n{"format":"photo|video|ad|store|other","caption":"ready-to-post caption with a clear CTA","hashtags":["relevant tag without the # symbol"],"image_prompt":"detailed photorealistic image prompt, or empty string if a video task","reel":{"hook":"opening idea","audio":"trending-audio suggestion","shots":[{"time":"0-3s","action":"what to film","onscreen":"on-screen text"}],"cta":"closing CTA"},"ad":{"primary":"primary ad text","headline":"short headline","description":"one-line description","audience":"who to target"},"store":{"discount_code":"CODE","discount_percent":20,"announcement":"announcement bar text","hero_headline":"hero headline","hero_subhead":"hero subhead"}}';
   try{
-    var raw=await aiCall(prompt,'You are a senior social media manager for a premium home-textiles brand. Output only valid JSON — no markdown, no preamble.');
+    var raw=await aiCall(prompt,'You are a senior marketing manager for a premium home-textiles brand. Output only valid JSON — no markdown, no preamble.');
     var d=parseAIJSON(raw);
     var html='';
+    if(d.format==='store'&&d.store){
+      var s=d.store;
+      if(s.discount_code)html+=mktBlock('🏷️ Discount code (create in Promotions)',s.discount_code+(s.discount_percent?('  —  '+s.discount_percent+'% off'):''));
+      if(s.announcement)html+=mktBlock('📢 Announcement bar (Storefront → Announcement)',s.announcement);
+      if(s.hero_headline)html+=mktBlock('Hero headline (Hero banner)',s.hero_headline);
+      if(s.hero_subhead)html+=mktBlock('Hero subhead (Hero banner)',s.hero_subhead);
+      if(d.image_prompt)html+=mktImageBlock('📸 Banner image — Generate, then set in Hero banner',d.image_prompt);
+      slot.innerHTML=html||'<p class="hint">Nothing came back — tap again.</p>';return;
+    }
+    if(d.format==='ad'&&d.ad){
+      var a=d.ad;
+      if(a.primary)html+=mktBlock('📣 Ad — primary text',a.primary);
+      if(a.headline)html+=mktBlock('Headline',a.headline);
+      if(a.description)html+=mktBlock('Description',a.description);
+      if(a.audience)html+=mktBlock('Suggested audience',a.audience);
+      if(d.image_prompt)html+=mktImageBlock('📸 Ad image — Generate, then Download',d.image_prompt);
+      slot.innerHTML=html||'<p class="hint">Nothing came back — tap again.</p>';return;
+    }
     if(d.caption)html+=mktBlock('Caption — ready to post',d.caption);
     if(d.hashtags&&d.hashtags.length)html+=mktBlock('Hashtags',d.hashtags.map(function(h){return '#'+String(h).replace(/^#/,'');}).join(' '));
     var r=d.reel||{};var hasReel=(d.format==='video')||(r.shots&&r.shots.length);
@@ -2029,6 +2083,32 @@ async function makeTask(id){
     slot.innerHTML=html||'<p class="hint">Nothing came back — tap the button again.</p>';
   }catch(e){
     slot.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>Couldn\'t create that.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';
+  }
+}
+function opWeekKey(){return 'w'+goalWeek();}
+function saveGoal(){ensureMkt();var a=document.getElementById('mkt_goalamt');var w=document.getElementById('mkt_goalweeks');if(a){var n=parseFloat(String(a.value).replace(/[^0-9.]/g,''));if(n>0)DB.marketing.goal.amount=n;}if(w){var ww=parseInt(w.value,10);if(ww>0)DB.marketing.goal.weeks=ww;}persist();renderAdmin();}
+function toggleDirective(id){ensureMkt();var wk=(DB.marketing.operator||{})[opWeekKey()];if(!wk)return;var d=(wk.directives||[]).find(x=>x.id===id);if(d){d.done=!d.done;persist();renderAdmin();}}
+async function briefWeek(){
+  ensureMkt();
+  var btn=document.getElementById('opBtn');if(btn){btn.disabled=true;btn.textContent='📋 Briefing…';}
+  var g=DB.marketing.goal||{};var w=goalWeek();var ph=goalPhase(w);
+  var brand=(DB.brand&&DB.brand.name)||'our store';
+  var voice=(DB.marketing&&DB.marketing.voice)||'';
+  var prods=(DB.products||[]).slice(0,12).map(function(p){return p.name;}).join(', ');
+  var log=(DB.marketing.log||[]).slice(-6).map(function(l){return l.date+' '+(l.platform||'')+': reach '+(l.reach||0)+', clicks '+(l.clicks||0)+', orders '+(l.orders||0)+', $'+(l.revenue||0);}).join(' | ')||'no results logged yet';
+  var goalStr='$'+Math.round(g.amount||5000000).toLocaleString();
+  var today='';try{today=new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});}catch(e){today=todayKey();}
+  var promoList=(DB.promos||[]).map(function(p){return (p.code||'')+' ('+(p.type==='percent'?(p.value+'% off'):('$'+p.value+' off'))+')';}).join(', ')||'none active';
+  var prompt='You are the AI Marketing Operator (the manager) for '+brand+', a premium home-textiles store. Brand voice: '+voice+'. Products: '+prods+'.\n\nBIG GOAL: '+goalStr+' in annual sales within '+(g.weeks||156)+' weeks.\nToday is '+today+'. We are in WEEK '+w+' of '+(g.weeks||156)+' — phase: '+ph.label+'.\nCurrently active discount codes: '+promoList+'.\nRecent results: '+log+'.\n\nAs the manager, brief the team on THIS WEEK. Look at the calendar: if a seasonal or retail moment is coming up soon (e.g. Valentine\'s, Mother\'s Day, summer refresh, back-to-school, Black Friday / Cyber Monday, Christmas / holiday, New Year), proactively schedule for it AHEAD of time — tell the team to launch a discount code, change the announcement bar, and switch the hero banner to the seasonal theme. You control these store levers: discount codes (Promotions), the announcement bar + hero banner (Storefront / Hero banner), in addition to Instagram, Pinterest, Email and Ads.\n\nGive a one-line focus, then 5-8 concrete directives a human team can execute this week. Use the channel field to say where each happens: Instagram | Pinterest | Email | Ads | Promo | Banner | Site. For seasonal moments include specific Promo and Banner directives (e.g. "Create code XMAS20 for 20% off" / "Switch hero + announcement to a holiday theme"). For each directive: a clear task, the channel, and one line on WHY it matters for the goal. Return ONLY valid JSON, no markdown:\n{"focus":"the one-line focus for this week","directives":[{"task":"clear, doable task","channel":"Instagram|Pinterest|Email|Ads|Promo|Banner|Site","why":"why this moves us toward the goal"}]}';
+  try{
+    var raw=await aiCall(prompt,'You are a sharp, practical head of marketing. Output only valid JSON — no markdown, no preamble.');
+    var d=parseAIJSON(raw);
+    DB.marketing.operator=DB.marketing.operator||{};
+    DB.marketing.operator[opWeekKey()]={focus:d.focus||'',phase:ph.label,directives:(d.directives||[]).map(function(x){return {id:uid('d'),task:String(x.task||''),channel:String(x.channel||''),why:String(x.why||''),done:false};})};
+    persist();renderAdmin();
+  }catch(e){
+    if(btn){btn.disabled=false;btn.textContent='📋 Brief the team for this week';}
+    var er=document.getElementById('opErr');if(er)er.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>Couldn\'t get a briefing.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';
   }
 }
 function logResult(){
@@ -2072,9 +2152,41 @@ function adminMarketing(){
       +log.map(l=>`<tr style="border-top:1px solid var(--line)"><td style="padding:6px 8px">${esc(l.date)}</td><td>${esc(l.platform||'')}</td><td>${l.reach||0}</td><td>${l.clicks||0}</td><td>${l.orders||0}</td><td>$${l.revenue||0}</td><td><button class="btn ghost sm" style="padding:2px 8px" onclick="delLog('${l.id}')">×</button></td></tr>`).join('')
       +'</tbody></table></div>'
     : '<p class="hint">No results logged yet. After you post, drop in the numbers you see in Instagram/Pinterest and Snipcart.</p>';
+  // --- AI Operator (manager) ---
+  const g=DB.marketing.goal||{amount:5000000,weeks:156};
+  const gw=goalWeek();const gph=goalPhase(gw);
+  const goalStr='$'+Math.round(g.amount||5000000).toLocaleString();
+  const opWk=(DB.marketing.operator||{})['w'+gw];
+  const opDir=(opWk&&opWk.directives)||[];
+  const opDone=opDir.filter(x=>x.done).length;
+  const chanColor={Instagram:'#B5754F',Pinterest:'#3A5A52',Email:'#6C6359',Ads:'#2C463F',Promo:'#B5754F',Banner:'#3A5A52',Site:'#6C6359'};
+  const opDirHtml=opDir.length
+    ? opDir.map(d=>`<div style="padding:10px 0;border-bottom:1px solid var(--line)"><label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer"><input type="checkbox" ${d.done?'checked':''} onchange="toggleDirective('${d.id}')" style="width:auto;margin-top:3px"><span style="flex:1;${d.done?'opacity:.5;text-decoration:line-through':''}"><span style="display:inline-block;font-size:11px;font-weight:600;color:#fff;background:${chanColor[d.channel]||'#6C6359'};padding:1px 7px;border-radius:10px;margin-right:6px">${esc(d.channel||'')}</span>${esc(d.task)}<br><span class="hint" style="font-size:12px">↳ ${esc(d.why||'')}</span></span></label><div style="margin:6px 0 2px 28px"><button class="btn loom sm" onclick="makeFor(${JSON.stringify(d.task).replace(/"/g,'&quot;')},'op_${d.id}')">✨ Make this for me</button><div id="op_${d.id}" style="margin-top:8px"></div></div></div>`).join('')
+      +`<p class="hint" style="margin-top:10px">${opDone}/${opDir.length} done${opDir.length&&opDone===opDir.length?' — great week 🎉':''}</p>`
+    : '<p class="hint">No briefing yet for this week. Hit the button and your AI Operator will assign this week’s priorities.</p>';
+  const operatorPanel=`
+   <div class="panel" style="border:1px solid var(--loom);background:linear-gradient(180deg,rgba(58,90,82,.05),transparent)">
+     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+       <div><h3 style="margin:0">🧭 AI Operator — your marketing manager</h3>
+       <p class="hint" style="margin:4px 0 0">Goal: <b>${goalStr}</b> in ${g.weeks||156} weeks · <b>Week ${gw}</b> · ${esc(gph.label)}</p></div>
+     </div>
+     <p class="hint" style="margin:12px 0 8px">The Operator sets the week's priorities for your team. Each directive has a <b>✨ Make this for me</b> button so the AI also produces the post, ad, or content.</p>
+     ${opWk&&opWk.focus?`<p style="margin:0 0 10px;font-weight:600">This week's focus: <span style="font-weight:400">${esc(opWk.focus)}</span></p>`:''}
+     <div>${opDirHtml}</div>
+     <div id="opErr"></div>
+     <button id="opBtn" class="btn ${opDir.length?'ghost':'loom'} sm" style="margin-top:12px" onclick="briefWeek()">${opDir.length?'Re-brief the team':'📋 Brief the team for this week'}</button>
+     <details style="margin-top:14px"><summary class="hint" style="cursor:pointer">Goal settings</summary>
+       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+         <div class="field" style="flex:1;min-width:140px"><label>Sales goal ($)</label><input id="mkt_goalamt" value="${g.amount||5000000}"></div>
+         <div class="field" style="flex:1;min-width:140px"><label>Timeframe (weeks)</label><input id="mkt_goalweeks" value="${g.weeks||156}"></div>
+       </div>
+       <button class="btn ghost sm" onclick="saveGoal()">Save goal</button>
+     </details>
+   </div>`;
   return `
    <h1>Marketing studio</h1>
    <p class="sub">Your daily marketing routine, AI content, and a feedback loop — all from your real catalog.</p>
+   ${operatorPanel}
 
    <div class="panel">
      <h3>Today · ${esc(dateLabel)}</h3>
@@ -2576,6 +2688,65 @@ async function deleteSub(cid,sid){
 function hasAnySale(p){
   if(isCollection(p)) return p.baseSalePrice!=null || optSize(p).values.some(s=>s.salePrice!=null) || Object.values(p.variants||{}).some(v=>v.salePrice!=null);
   return p.salePrice!=null&&p.salePrice<p.price;
+}
+function parseInventoryCsv(text){
+  var lines=String(text||'').split(/\r?\n/);var n=0;
+  lines.forEach(function(ln,i){
+    if(!ln.trim())return;
+    var parts=ln.split(',');
+    var sku=(parts[0]||'').trim().replace(/^"|"$/g,'');
+    var qtyRaw=(parts[1]||'').trim().replace(/^"|"$/g,'');
+    if(i===0 && /sku/i.test(sku) && !/^-?[0-9]/.test(qtyRaw))return; // header row
+    if(!sku)return;
+    var q=parseInt(qtyRaw,10);if(isNaN(q))return;
+    invMap()[sku]=q;n++;
+  });
+  return n;
+}
+function uploadInventoryCSV(){
+  var inp=document.getElementById('inv_file');
+  if(!inp||!inp.files||!inp.files[0]){toast('Choose a CSV file first');return;}
+  var fr=new FileReader();
+  fr.onload=function(){try{var n=parseInventoryCsv(fr.result);persist();renderAdmin();toast('Updated '+n+' SKUs');}catch(e){toast('Could not read that file');}};
+  fr.onerror=function(){toast('Could not read that file');};
+  fr.readAsText(inp.files[0]);
+}
+function downloadInventoryCsv(){
+  var rows=[['sku','quantity','product','variant']];
+  allSkus().forEach(function(r){rows.push([r.sku, invTracked(r.sku)?String(invQty(r.sku)):'', r.product, r.variant]);});
+  var csv=rows.map(function(r){return r.map(function(c){c=String(c==null?'':c);return /[",\n]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c;}).join(',');}).join('\n');
+  var blob=new Blob([csv],{type:'text/csv'});var u=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=u;a.download='home-weavers-inventory.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);
+}
+function invSetInput(sku,val){var n=parseInt(val,10);invMap()[sku]=isNaN(n)?0:n;persist();renderAdmin();}
+function adminInventory(){
+  var skus=allSkus();
+  var tracked=skus.filter(function(s){return invTracked(s.sku);});
+  var outCount=skus.filter(function(s){return invTracked(s.sku)&&invQty(s.sku)<=0;}).length;
+  var rows=skus.map(function(s){
+    var t=invTracked(s.sku);var q=invQty(s.sku);
+    var status=!t?'<span class="hint">not tracked</span>'
+      :(q>0?'<span style="color:var(--loom);font-weight:600">In stock</span>'
+           :'<span style="color:var(--clay);font-weight:600">OUT — hidden</span>');
+    return '<tr style="border-top:1px solid var(--line)"><td style="padding:7px 8px;font-family:var(--ui);font-size:13px">'+esc(s.sku)+'</td><td>'+esc(s.product)+'</td><td class="hint">'+esc(s.variant)+'</td><td style="text-align:center"><input type="number" value="'+(t?q:'')+'" onchange="invSetInput('+JSON.stringify(s.sku).replace(/"/g,'&quot;')+',this.value)" style="width:80px;text-align:center"></td><td style="text-align:center">'+status+'</td></tr>';
+  }).join('');
+  return `
+   <h1>Inventory</h1>
+   <p class="sub">Every SKU and its stock. Upload your counts daily — anything at 0 is automatically hidden and shown as out of stock on the store.</p>
+   <div class="panel">
+     <h3>Daily upload</h3>
+     <p class="hint" style="margin:-4px 0 12px">CSV with columns <b>sku,quantity</b>. Download the current list, fill in today's counts, and upload it back.</p>
+     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+       <button class="btn ghost sm" onclick="downloadInventoryCsv()">⬇ Download current (CSV)</button>
+       <input type="file" id="inv_file" accept=".csv,text/csv" style="font-size:13px">
+       <button class="btn loom sm" onclick="uploadInventoryCSV()">⬆ Upload inventory</button>
+     </div>
+   </div>
+   <div class="panel">
+     <h3>Stock levels</h3>
+     <p class="hint" style="margin:-4px 0 10px">${skus.length} SKUs · ${tracked.length} tracked · <b style="color:var(--clay)">${outCount} out of stock</b>. You can also edit a number directly below.</p>
+     <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr style="text-align:left;color:var(--ink-soft)"><th style="padding:6px 8px">SKU</th><th>Product</th><th>Variant</th><th style="text-align:center">Qty</th><th style="text-align:center">Status</th></tr></thead><tbody>${rows}</tbody></table></div>
+   </div>`;
 }
 function adminProducts(){
   if(editingProduct) return productEditor();
