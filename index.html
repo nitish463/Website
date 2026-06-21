@@ -1998,6 +1998,28 @@ async function genDailyTasks(){
   }catch(e){if(box)box.innerHTML='<div class="panel" style="border-color:var(--clay)"><b>Couldn\'t plan today.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';}
 }
 function toggleTask(id){ensureMkt();var arr=DB.marketing.tasks[todayKey()]||[];var t=arr.find(x=>x.id===id);if(t){t.done=!t.done;persist();renderAdmin();}}
+async function makeTask(id){
+  ensureMkt();
+  var arr=DB.marketing.tasks[todayKey()]||[];
+  var t=arr.find(x=>x.id===id);if(!t)return;
+  var slot=document.getElementById('mk_'+id);if(!slot)return;
+  slot.innerHTML='<p class="hint">✨ Creating this for you…</p>';
+  var brand=(DB.brand&&DB.brand.name)||'our store';
+  var voice=(DB.marketing&&DB.marketing.voice)||'';
+  var prods=(DB.products||[]).slice(0,12).map(function(p){return p.name;}).join(', ');
+  var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\n\nHere is one marketing task for today:\n"'+t.text+'"\n\nProduce the FINISHED, ready-to-post deliverable for this exact task so the user only has to upload it. Return ONLY valid JSON, no markdown:\n{"caption":"the full ready-to-post caption with a clear call to action","hashtags":["relevant tag without the # symbol"],"image_prompt":"a detailed, photorealistic prompt to generate the image this task needs"}';
+  try{
+    var raw=await aiCall(prompt,'You are a senior social media manager for a premium home-textiles brand. Output only valid JSON — no markdown, no preamble.');
+    var d=parseAIJSON(raw);
+    var html='';
+    if(d.caption)html+=mktBlock('Caption — ready to post',d.caption);
+    if(d.hashtags&&d.hashtags.length)html+=mktBlock('Hashtags',d.hashtags.map(function(h){return '#'+String(h).replace(/^#/,'');}).join(' '));
+    if(d.image_prompt)html+=mktImageBlock('📸 Image — hit Generate, then Download',d.image_prompt);
+    slot.innerHTML=html||'<p class="hint">Nothing came back — tap the button again.</p>';
+  }catch(e){
+    slot.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>Couldn\'t create that.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';
+  }
+}
 function logResult(){
   ensureMkt();
   function v(id){var e=document.getElementById(id);return e?e.value:'';}
@@ -2029,7 +2051,7 @@ function adminMarketing(){
   const done=tasks.filter(t=>t.done).length;
   let dateLabel;try{dateLabel=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});}catch(e){dateLabel=key;}
   const taskHtml=tasks.length
-    ? tasks.map(t=>`<label style="display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer"><input type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${t.id}')" style="width:auto;margin-top:3px"><span style="${t.done?'opacity:.5;text-decoration:line-through':''}">${esc(t.text)}</span></label>`).join('')
+    ? tasks.map(t=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer"><input type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${t.id}')" style="width:auto;margin-top:3px"><span style="${t.done?'opacity:.5;text-decoration:line-through':''}">${esc(t.text)}</span></label><div style="margin:6px 0 2px 28px"><button class="btn loom sm" onclick="makeTask('${t.id}')">✨ Make this for me</button><div id="mk_${t.id}" style="margin-top:8px"></div></div></div>`).join('')
       +`<p class="hint" style="margin-top:10px">${done}/${tasks.length} done${tasks.length&&done===tasks.length?' — all wrapped up today 🎉':''}</p>`
     : '<p class="hint">No plan yet for today. Click below and the AI will build your checklist.</p>';
   // --- results log ---
