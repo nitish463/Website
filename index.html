@@ -2007,14 +2007,25 @@ async function makeTask(id){
   var brand=(DB.brand&&DB.brand.name)||'our store';
   var voice=(DB.marketing&&DB.marketing.voice)||'';
   var prods=(DB.products||[]).slice(0,12).map(function(p){return p.name;}).join(', ');
-  var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\n\nHere is one marketing task for today:\n"'+t.text+'"\n\nProduce the FINISHED, ready-to-post deliverable for this exact task so the user only has to upload it. Return ONLY valid JSON, no markdown:\n{"caption":"the full ready-to-post caption with a clear call to action","hashtags":["relevant tag without the # symbol"],"image_prompt":"a detailed, photorealistic prompt to generate the image this task needs"}';
+  var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\n\nHere is one marketing task for today:\n"'+t.text+'"\n\nProduce the FINISHED, ready-to-use deliverable for this exact task. Decide the format from the task:\n- Photo or written post: give caption, hashtags, and an image_prompt.\n- Video or Reel: give caption, hashtags, and a "reel" shot-by-shot plan the user films on a phone in a few minutes (they film their REAL product — do not try to generate video). Leave image_prompt empty.\nReturn ONLY valid JSON, no markdown:\n{"format":"photo|video|other","caption":"ready-to-post caption with a clear CTA","hashtags":["relevant tag without the # symbol"],"image_prompt":"detailed photorealistic image prompt, or empty string if this is a video task","reel":{"hook":"strong opening idea","audio":"a trending-audio style suggestion","shots":[{"time":"0-3s","action":"exactly what to film","onscreen":"on-screen text caption"}],"cta":"closing call to action"}}';
   try{
     var raw=await aiCall(prompt,'You are a senior social media manager for a premium home-textiles brand. Output only valid JSON — no markdown, no preamble.');
     var d=parseAIJSON(raw);
     var html='';
     if(d.caption)html+=mktBlock('Caption — ready to post',d.caption);
     if(d.hashtags&&d.hashtags.length)html+=mktBlock('Hashtags',d.hashtags.map(function(h){return '#'+String(h).replace(/^#/,'');}).join(' '));
-    if(d.image_prompt)html+=mktImageBlock('📸 Image — hit Generate, then Download',d.image_prompt);
+    var r=d.reel||{};var hasReel=(d.format==='video')||(r.shots&&r.shots.length);
+    if(hasReel){
+      var lines=[];
+      if(r.hook)lines.push('HOOK: '+r.hook);
+      if(r.audio)lines.push('AUDIO: '+r.audio);
+      lines.push('');
+      (r.shots||[]).forEach(function(s,i){lines.push((s.time||('Shot '+(i+1)))+' — '+(s.action||'')+(s.onscreen?'  [on-screen: '+s.onscreen+']':''));});
+      if(r.cta){lines.push('');lines.push('CTA: '+r.cta);}
+      html+=mktBlock('🎬 Reel script — film this on your phone (your real product)',lines.join('\n').trim());
+    }else if(d.image_prompt){
+      html+=mktImageBlock('📸 Image — hit Generate, then Download',d.image_prompt);
+    }
     slot.innerHTML=html||'<p class="hint">Nothing came back — tap the button again.</p>';
   }catch(e){
     slot.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>Couldn\'t create that.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';
