@@ -1958,11 +1958,20 @@ function mktEndpoint(){return ((DB.marketing&&DB.marketing.endpoint)||'').trim()
 async function aiCall(userPrompt,system){
   const res=await fetch(mktEndpoint(),{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:system||'',messages:[{role:'user',content:userPrompt}]})
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,system:system||'',messages:[{role:'user',content:userPrompt}]})
   });
   if(!res.ok) throw new Error('AI request failed ('+res.status+')');
   const data=await res.json();
   return (data.content||[]).filter(b=>b&&b.type==='text').map(b=>b.text).join('\n').trim();
+}
+function parseAIJSON(raw){
+  var t=(raw||'').replace(/```json|```/g,'').trim();
+  try{return JSON.parse(t);}catch(e){}
+  var s=t.indexOf('{'),e2=t.lastIndexOf('}');
+  if(s>=0&&e2>s){try{return JSON.parse(t.slice(s,e2+1));}catch(e){}}
+  var as=t.indexOf('['),ae=t.lastIndexOf(']');
+  if(as>=0&&ae>as){try{return JSON.parse(t.slice(as,ae+1));}catch(e){}}
+  throw new Error('The AI reply came back incomplete — tap the button once more.');
 }
 function saveMarketing(){
   DB.marketing=DB.marketing||{};
@@ -1983,7 +1992,7 @@ async function genDailyTasks(){
     var recent=(DB.marketing.log||[]).slice(-5).map(l=>l.date+' '+(l.platform||'')+' reach '+(l.reach||0)+' clicks '+(l.clicks||0)+' orders '+(l.orders||0)).join('; ')||'none yet';
     var prompt='Brand: '+brand+'\nVoice: '+voice+'\nProducts: '+prods+'\nRecent results: '+recent+'\n\nGive a focused to-do list of 4-5 concrete social marketing tasks for TODAY for a small home-textiles shop on Instagram and Pinterest. Each doable in under 30 minutes, and reference real products where useful. Return ONLY valid JSON: {"tasks":["task 1","task 2"]}';
     var raw=await aiCall(prompt,'You are a practical marketing coach. Output only valid JSON, no markdown.');
-    var parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    var parsed=parseAIJSON(raw);
     DB.marketing.tasks[todayKey()]=(parsed.tasks||[]).map(function(t){return {id:uid('t'),text:String(t),done:false};});
     persist();renderAdmin();
   }catch(e){if(box)box.innerHTML='<div class="panel" style="border-color:var(--clay)"><b>Couldn\'t plan today.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';}
@@ -2005,7 +2014,7 @@ async function reviewResults(){
     var rows=log.slice(-30).map(l=>l.date+' | '+(l.platform||'?')+' | reach '+l.reach+' | clicks '+l.clicks+' | orders '+l.orders+' | $'+l.revenue+(l.note?' | '+l.note:'')).join('\n');
     var prompt='My recent social marketing results (home-textiles shop):\n'+rows+'\n\nIn plain language: what is working, what to stop or change, and the single most important thing to do tomorrow. Be specific. Return ONLY valid JSON: {"working":"...","change":"...","tomorrow":"..."}';
     var raw=await aiCall(prompt,'You are a sharp, practical marketing analyst. Output only valid JSON, no markdown.');
-    var d=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    var d=parseAIJSON(raw);
     mktReviewOut='<div class="panel" style="padding:12px 14px;margin-top:12px"><p style="margin:0 0 8px"><b>✅ Working:</b> '+esc(d.working||'')+'</p><p style="margin:0 0 8px"><b>🔧 Change:</b> '+esc(d.change||'')+'</p><p style="margin:0"><b>⭐ Tomorrow:</b> '+esc(d.tomorrow||'')+'</p></div>';
     renderAdmin();
   }catch(e){if(box)box.innerHTML='<div class="panel" style="border-color:var(--clay)"><b>Couldn\'t review.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';}
@@ -2154,7 +2163,7 @@ async function genMarketing(kind){
       prompt=`Brand: ${brand}\nBrand voice: ${voice}\nCatalog: ${(DB.products||[]).slice(0,10).map(x=>x.name).join(', ')}\n\nPropose 3 distinct marketing campaign ideas for this home-textiles store. Return ONLY valid JSON, no markdown:\n{"campaigns":[{"name":"...","hook":"one-line hook","angle":"why it works in 1-2 sentences","channels":["Instagram","Pinterest","Email"]}]}`;
     }
     const raw=await aiCall(prompt,'You are a senior e-commerce social media strategist for premium home brands. Output only valid JSON — no markdown fences, no preamble.');
-    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    const parsed=parseAIJSON(raw);
     out.innerHTML=renderMktResult(kind,parsed);
     mktOut=out.innerHTML;
   }catch(e){
