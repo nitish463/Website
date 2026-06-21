@@ -1,0 +1,9 @@
+{
+  "name": "homeweavers-site",
+  "version": "1.0.0",
+  "description": "Home Weavers — single-file storefront + admin prototype with a tiny static server.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}
