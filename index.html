@@ -2189,13 +2189,6 @@ function adminMarketing(){
    ${operatorPanel}
 
    <div class="panel">
-     <h3>Today · ${esc(dateLabel)}</h3>
-     <p class="hint" style="margin:-4px 0 10px">Your AI checklist for the day. Tick items off as you go.</p>
-     <div id="mktTasks">${taskHtml}</div>
-     <button class="btn ${tasks.length?'ghost':'loom'} sm" style="margin-top:10px" onclick="genDailyTasks()">${tasks.length?'Regenerate today’s plan':'✨ Plan my day'}</button>
-   </div>
-
-   <div class="panel">
      <h3>Log results &amp; let AI review</h3>
      <p class="hint" style="margin:-4px 0 12px">Enter the numbers you see after posting. The AI reads your history to tell you what’s working.</p>
      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px">
