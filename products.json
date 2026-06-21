@@ -1,0 +1,1298 @@
+[
+  {
+    "id": "WAT-IVO-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-IVO-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-IVO-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-IVO-QUEEN-01",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-IVO-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-IVO-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23EFE9DC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EIVORY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Ivory",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-FLA-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EFLAX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Flax",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SPR-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%233A5A52'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESPRUCE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Spruce",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SPR-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%233A5A52'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESPRUCE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Spruce",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SPR-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%233A5A52'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESPRUCE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Spruce",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SPR-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%233A5A52'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESPRUCE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Spruce",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SPR-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%233A5A52'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESPRUCE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Spruce",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-MIS-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMIST%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Mist",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-SAG-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ESAGE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Sage",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CLA-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B5754F'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLAY%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Clay",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-CHA-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%2346423D'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECHARCOAL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Charcoal",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-TWIN",
+    "name": "Waterford",
+    "price": 228,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-TWINXL",
+    "name": "Waterford",
+    "price": 238,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Twin XL",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-FULL",
+    "name": "Waterford",
+    "price": 258,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Full",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-QUEEN",
+    "name": "Waterford",
+    "price": 268,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Queen",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-KING",
+    "name": "Waterford",
+    "price": 318,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "WAT-BLU-CALKIN",
+    "name": "Waterford",
+    "price": 328,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8C3B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBLUSH%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Our signature woven duvet collection. Yarn-dyed long-staple cotton with a soft matelassé texture and a quiet tonal border — offered across a full range of colors and bed sizes.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ],
+    "customFields": [
+      {
+        "name": "Color",
+        "value": "Blush",
+        "type": "readonly"
+      },
+      {
+        "name": "Size",
+        "value": "Cal King",
+        "type": "readonly"
+      }
+    ]
+  },
+  {
+    "id": "p_ccyfmr",
+    "name": "Cloudloft Bath Rug",
+    "price": 48,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%239FB3A6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ECLOUDLOFT%20BATH%20RUG%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "A dense, quick-drying pile that cushions every step out of the shower. Memory-soft and slip-resistant.",
+    "categories": [
+      "Bath",
+      "Bath Rugs"
+    ]
+  },
+  {
+    "id": "p_8suzq3",
+    "name": "Pillowed Memory Bath Mat",
+    "price": 64,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23C9BBA6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EPILLOWED%20MEMORY%20BATH%20M%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Layered memory foam core wrapped in plush microfiber for a spa-underfoot feeling.",
+    "categories": [
+      "Bath",
+      "Bath Rugs"
+    ]
+  },
+  {
+    "id": "p_und8ta",
+    "name": "Heirloom Turkish Bath Towel",
+    "price": 38,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B7C2C9'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EHEIRLOOM%20TURKISH%20BATH%20%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Long-staple Turkish cotton that grows softer and more absorbent with every wash.",
+    "categories": [
+      "Bath",
+      "Towels"
+    ]
+  },
+  {
+    "id": "p_bbd7yv",
+    "name": "Ribbed Spa Hand Towel",
+    "price": 18,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D6C9B6'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ERIBBED%20SPA%20HAND%20TOWEL%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Textured rib weave with a tailored border. Sold as a set of two.",
+    "categories": [
+      "Bath",
+      "Towels"
+    ]
+  },
+  {
+    "id": "p_9mdnfc",
+    "name": "Marble Tumbler",
+    "price": 26,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23E2DACE'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EMARBLE%20TUMBLER%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Honed resin tumbler with a soft marbled finish to anchor your vanity.",
+    "categories": [
+      "Bath",
+      "Bath Accessories"
+    ]
+  },
+  {
+    "id": "p_tt8rwz",
+    "name": "Toothbrush Holder",
+    "price": 24,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23DAD0C0'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ETOOTHBRUSH%20HOLDER%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Weighted base with four slots, finished to coordinate with the marble collection.",
+    "categories": [
+      "Bath",
+      "Bath Accessories"
+    ]
+  },
+  {
+    "id": "p_97fi04",
+    "name": "Lotion Dispenser",
+    "price": 22,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CDC3B2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ELOTION%20DISPENSER%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Pump dispenser with a brushed metal collar and refillable resin body.",
+    "categories": [
+      "Bath",
+      "Bath Accessories"
+    ]
+  },
+  {
+    "id": "p_6wc7rb",
+    "name": "Hand-Knotted Accent Rug",
+    "price": 128,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23A88C6E'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EHAND-KNOTTED%20ACCENT%20RU%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "A small-scale hand-knotted wool rug with a low, even pile and fringed ends.",
+    "categories": [
+      "Rugs",
+      "Accent Rugs"
+    ]
+  },
+  {
+    "id": "p_9n397v",
+    "name": "Loomweave Area Rug 5x8",
+    "price": 329,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%238A9B8E'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ELOOMWEAVE%20AREA%20RUG%205X8%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Flatwoven from recycled cotton in a quiet tonal stripe. Reversible and durable.",
+    "categories": [
+      "Rugs",
+      "Area Rugs"
+    ]
+  },
+  {
+    "id": "p_3lacdm",
+    "name": "Heritage Down Comforter",
+    "price": 289,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23E5DECF'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EHERITAGE%20DOWN%20COMFORTE%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Baffle-box construction filled with responsibly sourced down for even, lofty warmth.",
+    "categories": [
+      "Bedding",
+      "Comforters"
+    ]
+  },
+  {
+    "id": "p_wbv58n",
+    "name": "Washed Percale Sheet Set",
+    "price": 138,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23C7C6BE'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EWASHED%20PERCALE%20SHEET%20S%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Crisp, breathable percale given a garment wash for that perfectly lived-in hand.",
+    "categories": [
+      "Bedding",
+      "Sheet Sets"
+    ]
+  },
+  {
+    "id": "p_qpr5t6",
+    "name": "Linen Duvet Cover",
+    "price": 218,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23CBC0AC'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3ELINEN%20DUVET%20COVER%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Pre-washed European flax linen with a relaxed drape and hidden button closure.",
+    "categories": [
+      "Bedding",
+      "Duvet Covers"
+    ]
+  },
+  {
+    "id": "p_ewmeog",
+    "name": "Boucle Lumbar Pillow",
+    "price": 72,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23D8CDBA'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EBOUCLE%20LUMBAR%20PILLOW%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "A nubby boucle face with a linen back and feather-down insert included.",
+    "categories": [
+      "Decor",
+      "Pillows"
+    ]
+  },
+  {
+    "id": "p_kgyxoy",
+    "name": "Handloom Throw Blanket",
+    "price": 78,
+    "url": "/products.json",
+    "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'600'%20height%3D'600'%3E%0A%20%20%20%20%3Cdefs%3E%3Cpattern%20id%3D'w'%20width%3D'16'%20height%3D'16'%20patternUnits%3D'userSpaceOnUse'%3E%0A%20%20%20%20%20%20%3Crect%20width%3D'16'%20height%3D'16'%20fill%3D'%23B59F84'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%208h16M8%200v16'%20stroke%3D'rgba(255%2C255%2C255%2C.18)'%20stroke-width%3D'2'%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D'M0%200h16M0%200v16'%20stroke%3D'rgba(0%2C0%2C0%2C.05)'%20stroke-width%3D'1'%2F%3E%0A%20%20%20%20%3C%2Fpattern%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'url(%23w)'%2F%3E%0A%20%20%20%20%3Crect%20width%3D'600'%20height%3D'600'%20fill%3D'rgba(0%2C0%2C0%2C.04)'%2F%3E%0A%20%20%20%20%3Ctext%20x%3D'50%25'%20y%3D'540'%20text-anchor%3D'middle'%20font-family%3D'Inter%2Csans-serif'%20font-size%3D'20'%20letter-spacing%3D'3'%20fill%3D'rgba(42%2C38%2C34%2C.5)'%3EHANDLOOM%20THROW%20BLANKET%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "description": "Reversible handloom throw with brushed cotton softness and tasseled ends.",
+    "categories": [
+      "Decor",
+      "Throws"
+    ]
+  }
+]
