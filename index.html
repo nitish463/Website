@@ -747,7 +747,7 @@ function seedData(){
     subscribers:[],
     social:{facebook:'',instagram:'',pinterest:''},
     snipcart:{enabled:false,apiKey:'',currency:'usd',version:'3.7.1',mode:'side',feedUrl:'/products.json'},
-    marketing:{voice:'',endpoint:''},
+    marketing:{voice:'',endpoint:'',imageEndpoint:''},
     socialGallery:{enabled:true,heading:'Find us on social',tiles:[
       {image:'',platform:'facebook',url:''},
       {image:'',platform:'pinterest',url:''},
@@ -1966,8 +1966,8 @@ async function aiCall(userPrompt,system){
 }
 function saveMarketing(){
   DB.marketing=DB.marketing||{};
-  const v=document.getElementById('mkt_voice');const e=document.getElementById('mkt_endpoint');
-  if(v)DB.marketing.voice=v.value;if(e)DB.marketing.endpoint=e.value.trim();
+  const v=document.getElementById('mkt_voice');const e=document.getElementById('mkt_endpoint');const ie=document.getElementById('mkt_imgendpoint');
+  if(v)DB.marketing.voice=v.value;if(e)DB.marketing.endpoint=e.value.trim();if(ie)DB.marketing.imageEndpoint=ie.value.trim();
   persist();toast('Marketing settings saved');
 }
 let mktReviewOut='';
@@ -2066,6 +2066,7 @@ function adminMarketing(){
      <p class="hint" style="margin:-4px 0 10px">Describe how your brand should sound, so the AI writes like you — e.g. "warm, understated, slow-living; celebrates natural fibers and craftsmanship."</p>
      <textarea id="mkt_voice" rows="3" style="width:100%;font-family:var(--ui)">${esc(m.voice||'')}</textarea>
      <div class="field" style="margin-top:12px"><label>AI endpoint (live site only)</label><input id="mkt_endpoint" value="${escAttr(m.endpoint||'')}" placeholder="Leave blank in preview"><div class="hint">Works automatically in preview. On your public site, paste your serverless proxy URL (it holds your Anthropic API key safely).</div></div>
+     <div class="field" style="margin-top:12px"><label>Image endpoint (for 🎨 Generate image)</label><input id="mkt_imgendpoint" value="${escAttr(m.imageEndpoint||'')}" placeholder="Your OpenAI image-proxy worker URL"><div class="hint">Image generation needs a separate provider (e.g. OpenAI). Paste your image-proxy worker URL here, then use the 🎨 Generate image buttons.</div></div>
      <button class="btn ghost sm" style="margin-top:10px" onclick="saveMarketing()">Save</button>
    </div>
 
@@ -2088,6 +2089,29 @@ function mktBlock(label,val){
   return `<div style="margin:0 0 14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><b style="font-size:13px">${esc(label)}</b><button class="btn ghost sm" onclick="mktCopy('${id}')">Copy</button></div><textarea id="${id}" rows="${rows}" style="width:100%;font-family:var(--ui)">${esc(val)}</textarea></div>`;
 }
 function mktCopy(id){var el=document.getElementById(id);if(!el)return;try{el.select();navigator.clipboard.writeText(el.value);}catch(e){}toast('Copied');}
+function mktImageBlock(label,val){
+  val=val||'';
+  const id='mk'+Math.random().toString(36).slice(2,8);const slot=id+'i';
+  const rows=Math.min(9,Math.max(2,Math.ceil(val.length/58)));
+  return `<div style="margin:0 0 18px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;gap:8px;flex-wrap:wrap"><b style="font-size:13px">${esc(label)}</b><span style="display:flex;gap:6px"><button class="btn ghost sm" onclick="mktCopy('${id}')">Copy</button><button class="btn loom sm" onclick="genImage('${id}','${slot}')">🎨 Generate image</button></span></div><textarea id="${id}" rows="${rows}" style="width:100%;font-family:var(--ui)">${esc(val)}</textarea><div id="${slot}" style="margin-top:8px"></div></div>`;
+}
+async function genImage(taId,slotId){
+  ensureMkt();
+  const slot=document.getElementById(slotId);const ta=document.getElementById(taId);
+  if(!slot||!ta)return;
+  const prompt=(ta.value||'').trim();
+  const ep=((DB.marketing&&DB.marketing.imageEndpoint)||'').trim();
+  if(!ep){slot.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>No image endpoint set.</b><p class="hint" style="margin:6px 0 0">Add your image-proxy URL in <b>Image endpoint</b> above and Save, then try again. (Image generation needs a separate provider like OpenAI — see the image-proxy worker file.)</p></div>';return;}
+  if(!prompt){slot.innerHTML='<p class="hint">Add a prompt first.</p>';return;}
+  slot.innerHTML='<p class="hint">🎨 Generating image… this can take 10–25 seconds.</p>';
+  try{
+    const res=await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt,size:'1024x1024'})});
+    let data={};try{data=await res.json();}catch(e){}
+    const src=data.image||data.url;
+    if(!src)throw new Error(data.error||('Request failed ('+res.status+')'));
+    slot.innerHTML='<img src="'+src+'" alt="Generated image" style="max-width:420px;width:100%;border-radius:10px;border:1px solid var(--line);display:block"><div style="margin-top:8px"><a class="btn ghost sm" href="'+src+'" download="home-weavers-image.png">Download image</a></div><p class="hint" style="margin:6px 0 0">Download it, then add it to a product (Products → image) or use it in your post.</p>';
+  }catch(e){slot.innerHTML='<div class="panel" style="border-color:var(--clay);padding:10px 12px"><b>Couldn\'t generate image.</b><p class="hint" style="margin:6px 0 0">'+esc(e.message||'Error')+'</p></div>';}
+}
 function renderMktResult(kind,d){
   if(kind==='post'){
     const ig=d.instagram||{},pin=d.pinterest||{};
@@ -2101,7 +2125,7 @@ function renderMktResult(kind,d){
   }
   if(kind==='image'){
     const ps=d.prompts||[];
-    return ps.length?'<p class="hint" style="margin:0 0 10px">Paste any of these into an AI image generator (Midjourney, DALL·E, Firefly).</p>'+ps.map(x=>mktBlock('📸 '+(x.label||'Image prompt'),x.prompt)).join(''):'<p class="hint">No prompts returned — try again.</p>';
+    return ps.length?'<p class="hint" style="margin:0 0 10px">Edit a prompt if you like, then hit 🎨 Generate image — or copy it into Midjourney/Firefly.</p>'+ps.map(x=>mktImageBlock('📸 '+(x.label||'Image prompt'),x.prompt)).join(''):'<p class="hint">No prompts returned — try again.</p>';
   }
   const cs=d.campaigns||[];
   return cs.length?cs.map(c=>`<div class="panel" style="padding:12px 14px;margin:0 0 10px"><b>${esc(c.name||'')}</b><p style="margin:4px 0"><i>${esc(c.hook||'')}</i></p><p class="hint" style="margin:4px 0">${esc(c.angle||'')}</p><p class="hint">Channels: ${esc((c.channels||[]).join(', '))}</p></div>`).join(''):'<p class="hint">No ideas returned — try again.</p>';
