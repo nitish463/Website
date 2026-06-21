@@ -1744,16 +1744,15 @@ function snipFeed(){
         const v=resolveVariant(p,c.id,sz.id);if(!v.inStock)return;
         const price=(v.salePrice!=null&&v.salePrice<v.price)?v.salePrice:v.price;
         const e={id:v.sku,name:p.name,price:+(+price).toFixed(2),url,
-          image:colorPrimary(c),description:(p.description||'').slice(0,180),categories:cats,
-          customFields:[{name:'Color',value:c.label,type:'readonly'},{name:'Size',value:sz.label,type:'readonly'}]};
-        if(p.weight!=null)e.weight=Math.round(+p.weight);
+          image:colorPrimary(c),description:(p.description||'').slice(0,180),categories:cats};
+        if(p.weight!=null)e.dimensions={weight:Math.round(+p.weight)};
         base.push(e);
       }));
     }else{
       if(p.inStock===false)return;
       const price=(p.salePrice!=null&&p.salePrice<p.price)?p.salePrice:p.price;
       const e={id:p.id,name:p.name,price:+(+price).toFixed(2),url,image:primaryImage(p),description:(p.description||'').slice(0,180),categories:cats};
-      if(p.weight!=null)e.weight=Math.round(+p.weight);
+      if(p.weight!=null)e.dimensions={weight:Math.round(+p.weight)};
       base.push(e);
     }
   });
