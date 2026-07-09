@@ -2409,7 +2409,7 @@ function adminStorefront(){
        <div class="field"><label>Logo text / store name</label><input id="f_brandName" value="${escAttr(DB.brand.name)}" oninput="refreshLogoPrev()"></div>
        <div class="field"><label>Tagline</label><input id="f_brandTag" value="${escAttr(DB.brand.tagline||'')}"><div class="hint">Small line under the logo. Leave blank to hide it.</div></div>
      </div>
-     <div class="field"><label>Logo image URL (optional)</label><input id="f_brandLogo" value="${escAttr(DB.brand.logoImage||'')}" placeholder="https://…" oninput="refreshLogoPrev()"><div class="hint">Shown next to the store name in the header. Blank = woven icon + the store name. Use a transparent PNG/SVG. Running locally? Drop the file next to index.html and use /logo.png</div></div>
+     <div class="field"><label>Logo image URL (optional)</label><input id="f_brandLogo" value="${escAttr(DB.brand.logoImage||'')}" placeholder="https://…" oninput="refreshLogoPrev()"><div class="hint">Shown next to the store name in the header. Blank = woven icon + the store name. Use a transparent PNG/SVG. Running locally? Drop the file next to index.html and use /logo.png <b>Recommended:</b> transparent PNG or SVG, about 400 × 160 px.</div></div>
      <label style="display:flex;gap:8px;align-items:center;font-size:14px;margin:2px 0 12px"><input type="checkbox" id="f_hideName" ${DB.brand.hideName?'checked':''} style="width:auto" onchange="refreshLogoPrev()"> My logo image already includes the name — don't show the text</label>
      <div class="field"><label>Logo preview</label>
        <div class="logoprev" id="logoPrev">${DB.brand.logoImage
@@ -2506,7 +2506,7 @@ function adminBanner(){
       <div class="grid3">
         <div class="field"><label>Button text</label><input value="${escAttr(s.ctaText||'')}" oninput="bSlideField(${i},'ctaText',this.value)"><div class="hint">Blank = no button</div></div>
         <div class="field"><label>Button link</label><input value="${escAttr(s.ctaLink||'')}" oninput="bSlideField(${i},'ctaLink',this.value)"><div class="hint">e.g. #/category/bath</div></div>
-        <div class="field"><label>Background image URL</label><input value="${escAttr(s.image||'')}" oninput="bSlideImg(${i},this.value)" placeholder="https://…"><div class="hint">Blank = woven gradient</div></div>
+        <div class="field"><label>Background image URL</label><input value="${escAttr(s.image||'')}" oninput="bSlideImg(${i},this.value)" placeholder="https://…"><div class="hint">Blank = woven gradient. <b>Recommended:</b> 2400 × 1200 px (2:1, landscape). Keep the key subject off to one side — text sits over the image.</div></div>
       </div>
       <div class="heroprev" id="slideprev_${i}" style="background:${s.image?`url('${escAttr(s.image)}') center/cover`:'linear-gradient(120deg,#3A5A52,#2C463F)'}">${s.image?'':'<span>Woven gradient — paste an image URL above to preview</span>'}</div>
     </div>`;
@@ -2539,7 +2539,7 @@ function adminBanner(){
      <div class="grid3">
        <div class="field"><label>Button text</label><input value="${escAttr(d.band.ctaText||'')}" oninput="bBandField('ctaText',this.value)"><div class="hint">Blank = no button</div></div>
        <div class="field"><label>Button link</label><input value="${escAttr(d.band.ctaLink||'')}" oninput="bBandField('ctaLink',this.value)"><div class="hint">e.g. #/page/our-story or #/category/bath</div></div>
-       <div class="field"><label>Image URL</label><input value="${escAttr(d.band.image||'')}" oninput="bBandField('image',this.value)" placeholder="https://…"></div>
+       <div class="field"><label>Image URL</label><input value="${escAttr(d.band.image||'')}" oninput="bBandField('image',this.value)" placeholder="https://…"><div class="hint"><b>Recommended:</b> 2000 × 1200 px (landscape). Blank = woven gradient.</div></div>
      </div>
    </div>
 
@@ -2569,7 +2569,7 @@ function adminBanner(){
            <button class="txtbtn danger" onclick="bRemoveFeat(${i})" ${d.features.length<=1?'disabled':''}>Remove</button></div>
          <div class="grid2">
            <div class="field"><label>Heading</label><input value="${escAttr(f.title||'')}" oninput="bFeatField(${i},'title',this.value)"></div>
-           <div class="field"><label>Picture URL (optional)</label><input value="${escAttr(f.image||'')}" oninput="bFeatImg(${i},this.value)" placeholder="https://… or /icon.png"><div class="hint">Blank = woven icon</div></div>
+           <div class="field"><label>Picture URL (optional)</label><input value="${escAttr(f.image||'')}" oninput="bFeatImg(${i},this.value)" placeholder="https://… or /icon.png"><div class="hint">Blank = woven icon. <b>Recommended:</b> 600 × 600 px (square).</div></div>
          </div>
          <div class="field"><label>Text</label><input value="${escAttr(f.body||'')}" oninput="bFeatField(${i},'body',this.value)"></div>
          <div class="featprev" id="featprev_${i}">${f.image?`<img src="${escAttr(f.image)}" alt="">`:'woven icon'}</div>
@@ -2591,7 +2591,7 @@ function adminBanner(){
            <select onchange="bTileField(${i},'platform',this.value);bTilePrev(${i})">
              ${PLATFORMS.map(p=>`<option value="${p[0]}" ${t.platform===p[0]?'selected':''}>${p[1]}</option>`).join('')}
            </select></div>
-         <div class="field"><label>Image URL</label><input value="${escAttr(t.image||'')}" oninput="bTileField(${i},'image',this.value);bTilePrev(${i})" placeholder="https://… or /social1.jpg"></div>
+         <div class="field"><label>Image URL</label><input value="${escAttr(t.image||'')}" oninput="bTileField(${i},'image',this.value);bTilePrev(${i})" placeholder="https://… or /social1.jpg"><div class="hint"><b>Recommended:</b> 1080 × 1080 px (square works; tile crops to ~4:3.6).</div></div>
          <div class="field"><label>Link URL</label><input value="${escAttr(t.url||'')}" oninput="bTileField(${i},'url',this.value)" placeholder="https://instagram.com/…"></div>
          <div class="tileprev" id="tileprev_${i}" style="${t.image?`background-image:url('${escAttr(t.image)}')`:''}"><span class="tileprev-ic">${socialIconSvg(t.platform)}</span></div>
        </div>`).join('')}
@@ -2682,7 +2682,7 @@ function categoryEditor(){
        <div class="field"><label>Name</label><input id="c_name" value="${escAttr(c.name)}" oninput="if(${isNew})document.getElementById('c_slug').value=slugify(this.value)"></div>
        <div class="field"><label>URL slug</label><input id="c_slug" value="${escAttr(c.slug)}"><div class="hint">Used in the link: #/category/<b>slug</b></div></div>
      </div>
-     <div class="field"><label>Tile image URL (optional)</label><input id="c_image" value="${escAttr(c.image)}" placeholder="https://…"><div class="hint">Blank shows a woven color tile.</div></div>
+     <div class="field"><label>Tile image URL (optional)</label><input id="c_image" value="${escAttr(c.image)}" placeholder="https://…"><div class="hint">Blank shows a woven color tile. <b>Recommended:</b> 1200 × 1540 px (portrait, ~3:4).</div></div>
    </div>
    <div class="panel">
      <h3>Filters on this category page</h3>
@@ -2889,7 +2889,7 @@ function simplePanels(p){
     <label style="display:flex;gap:8px;align-items:center;font-size:14px;margin-top:4px"><input type="checkbox" id="p_stock" ${p.inStock!==false?'checked':''} style="width:auto"> In stock</label>
   </div>
   <div class="panel"><h3>Photos &amp; video</h3>
-    <p class="hint" style="margin:-8px 0 14px">Up to 8 photos. Click the ★ to set the default photo (shown first and on listings). Add a video to appear at the bottom of the photo strip.</p>
+    <p class="hint" style="margin:-8px 0 14px">Up to 8 photos. Click the ★ to set the default photo (shown first and on listings). Add a video to appear at the bottom of the photo strip. <b>Recommended:</b> square 1600 × 1600 px (the product page shows them square; listing cards center-crop to portrait). Shoot on a plain, evenly-lit background. <span style="color:var(--ink-soft)">Tip: web images use <b>pixels, not DPI</b> — a "72 DPI" tag makes no difference. For crisp Retina screens, export at the pixel sizes above (they're already 2×). Use JPG for photos (keep each under ~500 KB) and PNG/SVG for logos.</span></p>
     <div class="photogrid8">
       ${imgs.map((u,i)=>`<div class="photoslot ${prim===i&&u?'isprim':''}">
         <input type="text" value="${escAttr(u)}" placeholder="Photo ${i+1} URL" oninput="pSimplePhoto(${i},this.value)">
@@ -2917,7 +2917,7 @@ function collectionPanels(p){
 
   <div class="panel">
     <h3>Colors &amp; photos — ${colorOpt.values.length}</h3>
-    <p class="hint" style="margin:-8px 0 14px">Each color carries up to 8 photos plus an optional video, shown when a shopper picks that color. Click the ★ to set the default photo (shown first and on listings).</p>
+    <p class="hint" style="margin:-8px 0 14px">Each color carries up to 8 photos plus an optional video, shown when a shopper picks that color. Click the ★ to set the default photo (shown first and on listings). <b>Recommended:</b> square 1600 × 1600 px per photo.</p>
     ${colorOpt.values.map(c=>colorCard(c)).join('')}
     <button class="miniadd" onclick="pAddColor()">+ Add color</button>
   </div>
@@ -3306,15 +3306,8 @@ async function boot(){
   if(DB.hero&&!Array.isArray(DB.hero.slides)){
     DB.hero={autoplay:true,interval:5000,slides:[{eyebrow:DB.hero.eyebrow||'',title:DB.hero.title||'',subtitle:DB.hero.subtitle||'',ctaText:DB.hero.ctaText||'',ctaLink:DB.hero.ctaLink||'#/',image:DB.hero.image||''}]};
   }
-  // one-time only: seed the sample collection for older demo stores; never re-add once the user has taken control
-  if(!DB._sampleCollectionSeeded){
-    if(!DB.products.some(isCollection)){
-      const wf=seedData().products.find(isCollection);
-      if(wf)DB.products.unshift(wf);
-    }
-    DB._sampleCollectionSeeded=true;
-    await saveStore(DB);
-  }
+  // (removed) previously re-added a sample collection when none existed — that fought manual deletes / empty-store
+
   paintChrome();
   normalizeEntryHash();
   window.addEventListener('popstate',router);
