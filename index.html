@@ -2367,7 +2367,7 @@ function adminDashboard(){
    </div>`;
 }
 async function resetAll(){if(!confirm('Reset everything to sample data?'))return;DB=seedData();await persist();paintChrome();renderAdmin();toast('Reset to sample data');}
-function blankCatalog(){DB.products=[];DB.categories=[];DB.promos=[];DB.inventory={};DB.subscribers=[];}
+function blankCatalog(){DB.products=[];DB.categories=[];DB.promos=[];DB.inventory={};DB.subscribers=[];DB._sampleCollectionSeeded=true;}
 async function emptyStore(){
   if(!confirm('Empty the store?\n\nThis deletes ALL products, categories, promo codes and inventory so you can load your own. Your brand settings, Snipcart keys and AI settings are kept.\n\nThis cannot be undone — export a backup first.'))return;
   blankCatalog();await persist();paintChrome();renderAdmin();toast('Store emptied — ready for your products');
@@ -3306,10 +3306,14 @@ async function boot(){
   if(DB.hero&&!Array.isArray(DB.hero.slides)){
     DB.hero={autoplay:true,interval:5000,slides:[{eyebrow:DB.hero.eyebrow||'',title:DB.hero.title||'',subtitle:DB.hero.subtitle||'',ctaText:DB.hero.ctaText||'',ctaLink:DB.hero.ctaLink||'#/',image:DB.hero.image||''}]};
   }
-  // non-destructive: if an older catalog has no collection yet, add the sample one so the variant feature is visible
-  if(!DB.products.some(isCollection)){
-    const wf=seedData().products.find(isCollection);
-    if(wf){DB.products.unshift(wf);await saveStore(DB);}
+  // one-time only: seed the sample collection for older demo stores; never re-add once the user has taken control
+  if(!DB._sampleCollectionSeeded){
+    if(!DB.products.some(isCollection)){
+      const wf=seedData().products.find(isCollection);
+      if(wf)DB.products.unshift(wf);
+    }
+    DB._sampleCollectionSeeded=true;
+    await saveStore(DB);
   }
   paintChrome();
   normalizeEntryHash();
