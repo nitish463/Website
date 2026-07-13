@@ -890,7 +890,55 @@ const KEY='hw:store:v1';
 const mem={}; // in-memory fallback
 const hasStore = typeof window!=='undefined' && window.storage && typeof window.storage.get==='function';
 const hasLocal = (()=>{try{return typeof localStorage!=='undefined' && (localStorage.setItem('__hw_t','1'),localStorage.removeItem('__hw_t'),true);}catch(e){return false;}})();
+
+/* ---------- Supabase backend (optional) ----------
+   For a real multi-visitor store, connect a free Supabase project.
+   Paste your Project URL + anon key below (or set them in Admin → Backend).
+   The anon key is safe to ship publicly — the database is protected by
+   Row Level Security (see supabase-setup.sql). */
+const SB_CONFIG={url:'',anonKey:''};
+function sbCfg(){
+  if(SB_CONFIG.url&&SB_CONFIG.anonKey)return SB_CONFIG;
+  try{const raw=localStorage.getItem('hw:sb');if(raw){const o=JSON.parse(raw);if(o&&o.url&&o.anonKey)return o;}}catch(e){}
+  return null;
+}
+function sbSaveCfg(url,anonKey){try{localStorage.setItem('hw:sb',JSON.stringify({url:(url||'').trim(),anonKey:(anonKey||'').trim()}));_sb=null;return true;}catch(e){return false;}}
+let _sb=null;
+function sbClient(){
+  const c=sbCfg();if(!c)return null;
+  if(_sb)return _sb;
+  if(typeof window==='undefined'||!window.supabase||!window.supabase.createClient)return null;
+  try{_sb=window.supabase.createClient(c.url,c.anonKey);}catch(e){_sb=null;}
+  return _sb;
+}
+async function ensureSupabaseLib(){
+  if(typeof window==='undefined'||typeof document==='undefined')return false;
+  if(window.supabase&&window.supabase.createClient)return true;
+  if(!sbCfg())return false;
+  return new Promise(function(res){
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.onload=function(){res(!!(window.supabase&&window.supabase.createClient));};
+    s.onerror=function(){res(false);};
+    document.head.appendChild(s);
+  });
+}
+async function sbLoad(){
+  const sb=sbClient();if(!sb)return null;
+  try{const res=await sb.from('store').select('data').eq('id','main').maybeSingle();if(res.error)throw res.error;return res.data?res.data.data:null;}
+  catch(e){console.warn('Supabase load failed',e);return null;}
+}
+async function sbSave(d){
+  const sb=sbClient();if(!sb)return false;
+  try{const res=await sb.from('store').upsert({id:'main',data:d,updated_at:new Date().toISOString()});if(res.error)throw res.error;return true;}
+  catch(e){console.warn('Supabase save failed',e);return false;}
+}
+async function sbSignIn(email,pw){const sb=sbClient();if(!sb)return {error:'Backend not configured'};try{const r=await sb.auth.signInWithPassword({email:(email||'').trim(),password:pw||''});return r.error?{error:r.error.message}:{ok:true};}catch(e){return{error:String((e&&e.message)||e)};}}
+async function sbSignOut(){const sb=sbClient();if(sb){try{await sb.auth.signOut();}catch(e){}}}
+async function sbSession(){const sb=sbClient();if(!sb)return null;try{const r=await sb.auth.getSession();return (r.data&&r.data.session)?r.data.session:null;}catch(e){return null;}}
+let _lastPublish={ok:null,at:null};
 async function loadStore(){
+  if(sbCfg()){const d=await sbLoad();if(d)return d;}
   if(hasStore){
     try{const r=await window.storage.get(KEY);if(r&&r.value)return JSON.parse(r.value);}catch(e){}
     return null;
@@ -900,9 +948,11 @@ async function loadStore(){
 }
 async function saveStore(d){
   const v=JSON.stringify(d);
-  if(hasStore){try{await window.storage.set(KEY,v);return true;}catch(e){console.warn('save failed',e);} }
-  if(hasLocal){try{localStorage.setItem(KEY,v);return true;}catch(e){console.warn('localStorage save failed',e);} }
-  mem[KEY]=v;return true;
+  if(sbCfg()){const ok=await sbSave(d);_lastPublish={ok:ok,at:Date.now()};}
+  if(hasStore){try{await window.storage.set(KEY,v);}catch(e){console.warn('cache save failed',e);}}
+  else if(hasLocal){try{localStorage.setItem(KEY,v);}catch(e){console.warn('localStorage save failed',e);}}
+  else mem[KEY]=v;
+  return true;
 }
 
 /* ---------- app state ---------- */
@@ -2348,6 +2398,24 @@ function adminDashboard(){
            <td>${esc(p.name)}</td><td>${esc(c?c.name:'—')}</td><td>${r.min===r.max?money(r.min):money(r.min)+'–'+money(r.max)}</td></tr>`}).join('')}
      </tbody></table>
    </div>
+   <div class="panel" style="border:1px solid var(--loom)">
+     <h3>🌐 Backend &amp; sync ${sbCfg()?'<span style="font-size:12px;color:var(--loom);font-weight:600">● connected</span>':'<span style="font-size:12px;color:var(--ink-soft)">○ not connected</span>'}</h3>
+     <p class="muted" style="margin:-4px 0 12px;font-size:13.5px">Connect a free Supabase database so your edits go live for <b>every visitor on any device</b> — not just this browser. ${sbCfg()?'Your store is connected.':'Until connected, the site works from this browser only.'} Setup steps are in <b>SUPABASE-SETUP.md</b>.</p>
+     <div style="display:grid;gap:10px;max-width:640px">
+       <div class="field"><label>Supabase Project URL</label><input id="sb_url" value="${escAttr((sbCfg()&&sbCfg().url)||'')}" placeholder="https://xxxx.supabase.co"></div>
+       <div class="field"><label>Supabase anon (public) key</label><input id="sb_key" value="${escAttr((sbCfg()&&sbCfg().anonKey)||'')}" placeholder="eyJhbGci…"><div class="hint">This key is safe to be public — your data is protected by database rules (RLS).</div></div>
+       <div><button class="btn loom sm" onclick="saveBackendCfg()">Save connection</button></div>
+     </div>
+     <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:14px;max-width:640px">
+       <p class="muted" style="margin:0 0 10px;font-size:13.5px"><b>Publish access.</b> Sign in with your admin database user so your changes save to the live store. (Visitors never need this — only you, to publish.)</p>
+       <div style="display:grid;gap:10px">
+         <div class="field"><label>Admin email</label><input id="sb_email" placeholder="you@homeweavers.net"></div>
+         <div class="field"><label>Admin password</label><input id="sb_pw" type="password" placeholder="••••••••"></div>
+         <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn loom sm" onclick="adminSignIn()">Sign in to publish</button><button class="btn ghost sm" onclick="adminSignOut()">Sign out</button><button class="btn ghost sm" onclick="refreshBackendStatus()">Check status</button></div>
+       </div>
+       <div id="sbStatus" class="hint" style="margin-top:10px"></div>
+     </div>
+   </div>
    <div class="panel">
      <h3>Backup &amp; data</h3>
      <p class="muted" style="margin:-4px 0 12px;font-size:13.5px">Your store is saved in <b>this browser only</b>. Export a backup regularly — and always before big changes or switching computers — so you never lose your catalog.</p>
@@ -2367,6 +2435,17 @@ function adminDashboard(){
    </div>`;
 }
 async function resetAll(){if(!confirm('Reset everything to sample data?'))return;DB=seedData();await persist();paintChrome();renderAdmin();toast('Reset to sample data');}
+function saveBackendCfg(){var u=document.getElementById('sb_url'),k=document.getElementById('sb_key');if(!u||!k){return;}if(!u.value.trim()||!k.value.trim()){toast('Enter both the URL and the anon key');return;}sbSaveCfg(u.value,k.value);toast('Backend connection saved — reloading');setTimeout(function(){location.reload();},600);}
+async function adminSignIn(){var e=document.getElementById('sb_email'),p=document.getElementById('sb_pw');if(!e||!p)return;if(!sbCfg()){toast('Save your Supabase connection first');return;}var r=await sbSignIn(e.value,p.value);if(r&&r.ok){await persist();toast('Signed in — your changes now publish live');refreshBackendStatus();}else{toast('Sign in failed: '+((r&&r.error)||'error'));}}
+async function adminSignOut(){await sbSignOut();toast('Signed out');refreshBackendStatus();}
+async function refreshBackendStatus(){
+  var el=document.getElementById('sbStatus');if(!el)return;
+  if(!sbCfg()){el.innerHTML='Not connected — the site uses this browser only.';return;}
+  el.innerHTML='Checking…';
+  var sess=await sbSession();
+  if(sess&&sess.user){el.innerHTML='✅ Signed in as <b>'+esc(sess.user.email||'admin')+'</b> — your saves publish live to all visitors.';}
+  else{el.innerHTML='Connected, but not signed in. Visitors can see the store; sign in above to publish changes.';}
+}
 function blankCatalog(){DB.products=[];DB.categories=[];DB.promos=[];DB.inventory={};DB.subscribers=[];DB._sampleCollectionSeeded=true;}
 async function emptyStore(){
   if(!confirm('Empty the store?\n\nThis deletes ALL products, categories, promo codes and inventory so you can load your own. Your brand settings, Snipcart keys and AI settings are kept.\n\nThis cannot be undone — export a backup first.'))return;
@@ -3268,6 +3347,7 @@ function val(id){const e=document.getElementById(id);return e?e.value:'';}
 
 /* ---------- boot ---------- */
 async function boot(){
+  await ensureSupabaseLib();
   DB=await loadStore();
   if(!DB){DB=seedData();await saveStore(DB);}
   // ensure newer fields exist if loaded from older shape
