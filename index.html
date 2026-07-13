@@ -896,7 +896,7 @@ const hasLocal = (()=>{try{return typeof localStorage!=='undefined' && (localSto
    Paste your Project URL + anon key below (or set them in Admin → Backend).
    The anon key is safe to ship publicly — the database is protected by
    Row Level Security (see supabase-setup.sql). */
-const SB_CONFIG={url:'',anonKey:''};
+const SB_CONFIG={url:'https://nhbfnoqlegcqtjucjhaa.supabase.co',anonKey:'sb_publishable_dUaTIbVqkd1gxk8PAdiERg_HfabcsUF'};
 function sbCfg(){
   if(SB_CONFIG.url&&SB_CONFIG.anonKey)return SB_CONFIG;
   try{const raw=localStorage.getItem('hw:sb');if(raw){const o=JSON.parse(raw);if(o&&o.url&&o.anonKey)return o;}}catch(e){}
