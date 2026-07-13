@@ -938,7 +938,7 @@ async function sbSignOut(){const sb=sbClient();if(sb){try{await sb.auth.signOut(
 async function sbSession(){const sb=sbClient();if(!sb)return null;try{const r=await sb.auth.getSession();return (r.data&&r.data.session)?r.data.session:null;}catch(e){return null;}}
 let _lastPublish={ok:null,at:null};
 async function loadStore(){
-  if(sbCfg()){const d=await sbLoad();if(d)return d;}
+  if(sbCfg()){const d=await sbLoad();if(d&&Array.isArray(d.products))return d;}
   if(hasStore){
     try{const r=await window.storage.get(KEY);if(r&&r.value)return JSON.parse(r.value);}catch(e){}
     return null;
@@ -3349,7 +3349,7 @@ function val(id){const e=document.getElementById(id);return e?e.value:'';}
 async function boot(){
   await ensureSupabaseLib();
   DB=await loadStore();
-  if(!DB){DB=seedData();await saveStore(DB);}
+  if(!DB||typeof DB!=='object'||!Array.isArray(DB.products)){DB=seedData();await saveStore(DB);}
   // ensure newer fields exist if loaded from older shape
   if(!DB.band)DB.band=seedData().band;
   if(DB.band&&DB.band.ctaLink==null)DB.band.ctaLink='#/page/our-story';
