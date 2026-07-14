@@ -1982,21 +1982,35 @@ function enterAdmin(){
   renderAdmin();
 }
 function renderLogin(){
+  const useSb=!!sbCfg();
   document.getElementById('admin').innerHTML=`
    <div class="login"><div class="box">
      <div class="mark">${SVG.logo} Home Weavers</div>
      <p class="muted" style="margin:0 0 20px">Store admin</p>
-     <div class="field" style="text-align:left">
-       <label>Password</label>
-       <input id="adpass" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()">
-     </div>
+     ${useSb?`
+     <div class="field" style="text-align:left"><label>Email</label><input id="ademail" type="email" placeholder="you@homeweavers.net" onkeydown="if(event.key==='Enter')tryLogin()"></div>
+     <div class="field" style="text-align:left"><label>Password</label><input id="adpass" type="password" placeholder="Your password" onkeydown="if(event.key==='Enter')tryLogin()"></div>
      <button class="btn loom block" onclick="tryLogin()">Sign in</button>
-     <div class="demo">Demo password: <b>${esc(DB.password)}</b></div>
+     <div id="aderr" class="hint" style="margin-top:10px;color:var(--clay)"></div>
+     <p class="hint" style="margin:12px 0 0">Manage logins in your Supabase project → Authentication → Users.</p>
+     `:`
+     <div class="field" style="text-align:left"><label>Password</label><input id="adpass" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()"></div>
+     <button class="btn loom block" onclick="tryLogin()">Sign in</button>
+     `}
      <p style="margin:16px 0 0"><a class="link-u" href="#/">← Back to store</a></p>
    </div></div>`;
-  setTimeout(()=>{const i=document.getElementById('adpass');if(i)i.focus();},60);
+  setTimeout(()=>{const i=document.getElementById(useSb?'ademail':'adpass');if(i)i.focus();},60);
 }
-function tryLogin(){
+async function tryLogin(){
+  if(sbCfg()){
+    const em=document.getElementById('ademail'),pw=document.getElementById('adpass'),err=document.getElementById('aderr');
+    if(!em||!pw)return;
+    if(err)err.textContent='Signing in…';
+    const r=await sbSignIn(em.value,pw.value);
+    if(r&&r.ok){adminAuthed=true;renderAdmin();}
+    else if(err)err.textContent='Sign in failed: '+((r&&r.error)||'check your email and password');
+    return;
+  }
   const v=document.getElementById('adpass').value;
   if(v===DB.password){adminAuthed=true;renderAdmin();}
   else toast('Incorrect password');
@@ -2043,7 +2057,7 @@ function renderAdmin(){
       <main class="admain">${body}</main>
     </div>`;
 }
-function logoutAdmin(){adminAuthed=false;renderLogin();}
+async function logoutAdmin(){adminAuthed=false;try{await sbSignOut();}catch(e){}renderLogin();}
 
 /* ---- Marketing studio (AI) ---- */
 let mktOut='';
