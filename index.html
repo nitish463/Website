@@ -3009,6 +3009,7 @@ function simplePanels(p){
 
 function collectionPanels(p){
   const colorOpt=optColor(p),sizeOpt=optSize(p);
+  const perSku=p.photoMode==='sku';
   return `
   <div class="panel">
     <h3>Base pricing</h3>
@@ -3020,9 +3021,19 @@ function collectionPanels(p){
   </div>
 
   <div class="panel">
-    <h3>Colors &amp; photos — ${colorOpt.values.length}</h3>
-    <p class="hint" style="margin:-8px 0 14px">Each color carries up to 8 photos plus an optional video, shown when a shopper picks that color. Click the ★ to set the default photo (shown first and on listings). <b>Recommended:</b> square 1600 × 1600 px per photo.</p>
-    ${colorOpt.values.map(c=>colorCard(c)).join('')}
+    <h3>Where do the photos live?</h3>
+    <div class="ptype">
+      <button class="${!perSku?'active':''}" onclick="pSetPhotoMode('color')"><b>Same photos per color</b><span>Every size of a color shares one photo set. Best when only the size changes.</span></button>
+      <button class="${perSku?'active':''}" onclick="pSetPhotoMode('sku')"><b>Different photos per SKU</b><span>Each color × size gets its own photos. Best when shapes differ (e.g. 17×24 vs contour).</span></button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Colors — ${colorOpt.values.length}</h3>
+    <p class="hint" style="margin:-8px 0 14px">${perSku
+      ? 'Name each color and set its swatch. Photos are set per SKU below, in <b>Variants</b>.'
+      : 'Each color carries up to 8 photos plus an optional video, shown when a shopper picks that color. Click the ★ to set the default photo (shown first and on listings). <b>Recommended:</b> square 1600 × 1600 px per photo.'}</p>
+    ${colorOpt.values.map(c=>colorCard(c,perSku)).join('')}
     <button class="miniadd" onclick="pAddColor()">+ Add color</button>
   </div>
 
@@ -3046,7 +3057,7 @@ function collectionPanels(p){
   </div>`;
 }
 
-function colorCard(c){
+function colorCard(c,perSku){
   const imgs=(c.images||[]).slice(0,8);while(imgs.length<8)imgs.push('');
   const prim=c.primary||0;
   return `<div class="colorcard">
@@ -3055,6 +3066,7 @@ function colorCard(c){
       <input type="text" value="${escAttr(c.label)}" placeholder="Color name" oninput="pColorField('${c.id}','label',this.value)">
       <button class="txtbtn danger" onclick="pRemoveColor('${c.id}')">Remove</button>
     </div>
+    ${perSku?'':`
     <div class="photogrid8">
       ${imgs.map((u,i)=>`<div class="photoslot ${prim===i&&u?'isprim':''}">
         <input type="text" value="${escAttr(u)}" placeholder="Photo ${i+1} URL" oninput="pColorPhoto('${c.id}',${i},this.value)">
@@ -3062,7 +3074,7 @@ function colorCard(c){
       </div>`).join('')}
     </div>
     <div class="field" style="margin-top:10px"><label>Video URL (optional)</label>
-      <input type="text" value="${escAttr(c.video||'')}" placeholder="YouTube / Vimeo / .mp4 — appears at the bottom of the photo strip" oninput="pColorField('${c.id}','video',this.value)"></div>
+      <input type="text" value="${escAttr(c.video||'')}" placeholder="YouTube / Vimeo / .mp4 — appears at the bottom of the photo strip" oninput="pColorField('${c.id}','video',this.value)"></div>`}
   </div>`;
 }
 
@@ -3082,7 +3094,7 @@ function variantGroup(p,color,sizeOpt,open){
           <td><input type="number" step="0.01" value="${ov.price==null?'':ov.price}" placeholder="${defPrice}" oninput="pVarField('${color.id}','${s.id}','price',this.value)"></td>
           <td style="text-align:center"><input type="checkbox" ${ov.inStock!==false?'checked':''} onchange="pVarField('${color.id}','${s.id}','inStock',this.checked)" style="width:auto"></td>
         </tr>
-        <tr><td colspan="4" style="padding:0 0 10px">
+        ${p.photoMode!=='sku'?'':`<tr><td colspan="4" style="padding:0 0 10px">
           <details class="vphotos">
             <summary style="cursor:pointer;font-size:12.5px;color:${nOwn?'var(--loom)':'var(--ink-soft)'};padding:4px 0">
               📷 Photos for ${esc(s.label)} — ${nOwn?('<b>'+nOwn+' own photo'+(nOwn>1?'s':'')+'</b>'):'using the color’s photos'}
@@ -3100,7 +3112,7 @@ function variantGroup(p,color,sizeOpt,open){
               ${nOwn?`<button class="btn ghost sm" style="margin-top:8px" onclick="pVarClearPhotos('${color.id}','${s.id}')">Clear — use the color’s photos instead</button>`:''}
             </div>
           </details>
-        </td></tr>`}).join('')}
+        </td></tr>`}`}).join('')}
       </tbody></table>
     </div>
   </details>`;
@@ -3158,6 +3170,7 @@ function pRemoveSize(id){const o=optSize(pDraft);if(o.values.length<=1){toast('K
   o.values=o.values.filter(v=>v.id!==id);
   if(pDraft.variants)Object.keys(pDraft.variants).forEach(k=>{if(k.split('__')[1]===id)delete pDraft.variants[k];});renderAdmin();}
 function pSizeField(id,f,v){const s=optSize(pDraft).values.find(x=>x.id===id);if(s)s[f]=v;}
+function pSetPhotoMode(m){syncBasics();pDraft.photoMode=(m==='sku'?'sku':'color');renderAdmin();}
 function pVarField(colorId,sizeId,f,v){pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o[f]=v;}
 function pVarPhoto(colorId,sizeId,i,v){pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o.images=o.images||[];while(o.images.length<8)o.images.push('');o.images[i]=v;}
 function pVarPrimary(colorId,sizeId,i){syncBasics();pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o.primary=i;renderAdmin();}
@@ -3195,6 +3208,7 @@ async function saveProduct(id){
       }
       if(Object.keys(e).length)vs[k]=e;});
     out.options=pDraft.options;out.variants=vs;
+    out.photoMode=(pDraft.photoMode==='sku'?'sku':'color');
     out.basePrice=num(pDraft.basePrice)||0;out.baseSalePrice=num(pDraft.baseSalePrice);
     out.skuPrefix=(pDraft.skuPrefix||'').trim();out.inStock=true;
   }else{
