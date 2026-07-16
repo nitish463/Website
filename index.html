@@ -884,10 +884,38 @@ function priceRange(p){
   optColor(p).values.forEach(c=>optSize(p).values.forEach(s=>{const r=resolveVariant(p,c.id,s.id);vals.push(r.salePrice!=null&&r.salePrice<r.price?r.salePrice:r.price);}));
   return{min:Math.min.apply(null,vals),max:Math.max.apply(null,vals)};
 }
-function colorPrimary(c){const raw=(c&&c.images)||[];const u=raw[(c&&c.primary)||0]||raw.find(Boolean);return u?assetUrl(u):weaveSwatch(c&&c.hex,c&&c.label);}
+function colorPrimary(c,p){
+  const raw=((c&&c.images)||[]).filter(Boolean);
+  const u=raw[(c&&c.primary)||0]||raw[0];
+  if(u)return assetUrl(u);
+  if(p&&isCollection(p)&&c){
+    const sizes=optSize(p).values||[];
+    for(let i=0;i<sizes.length;i++){
+      const ov=(p.variants&&p.variants[vKey(c.id,sizes[i].id)])||{};
+      const imgs=(ov.images||[]).filter(Boolean);
+      if(imgs.length)return assetUrl(imgs[ov.primary||0]||imgs[0]);
+    }
+  }
+  return weaveSwatch(c&&c.hex,c&&c.label);
+}
 function primaryImage(p){
-  if(isCollection(p)){const c=optColor(p).values[0];return colorPrimary(c);}
-  const raw=p.images||[];const u=raw[p.primary||0]||raw.find(Boolean);return u?assetUrl(u):imgFor(p,p.name);
+  if(isCollection(p)){
+    const cols=optColor(p).values||[],sizes=optSize(p).values||[];
+    const c0=cols[0];
+    const cimgs=((c0&&c0.images)||[]).filter(Boolean);
+    if(cimgs.length)return colorPrimary(c0);
+    for(let ci=0;ci<cols.length;ci++){
+      for(let si=0;si<sizes.length;si++){
+        const ov=(p.variants&&p.variants[vKey(cols[ci].id,sizes[si].id)])||{};
+        const imgs=(ov.images||[]).filter(Boolean);
+        if(imgs.length)return assetUrl(imgs[ov.primary||0]||imgs[0]);
+      }
+      const ci2=((cols[ci]&&cols[ci].images)||[]).filter(Boolean);
+      if(ci2.length)return colorPrimary(cols[ci]);
+    }
+    return weaveSwatch(c0&&c0.hex,c0&&c0.label);
+  }
+  const raw=(p.images||[]).filter(Boolean);const u=raw[p.primary||0]||raw[0];return u?assetUrl(u):imgFor(p,p.name);
 }
 
 /* ---------- storage layer ----------
@@ -1670,7 +1698,7 @@ function renderCollection(p){
       <div class="stepper"><button onclick="stepQty(-1)">–</button><span id="pdpQty">1</span><button onclick="stepQty(1)">+</button></div>
       ${snipEnabled()
         ? (v.inStock
-            ? `<button id="buyBtn" class="btn loom snipcart-add-item" style="flex:1;justify-content:center" data-item-quantity="1" ${snipDataAttrs({id:v.sku,name:p.name,price:(onSale?v.salePrice:v.price),image:colorPrimary(color),description:p.description,weight:p.weight,categories:[snipCat(cat&&cat.name),snipCat(sub&&sub.name)].filter(Boolean),custom:[{name:'Color',value:v.color.label,type:'readonly'},{name:'Size',value:v.size.label,type:'readonly'}]})}>Add to cart</button>`
+            ? `<button id="buyBtn" class="btn loom snipcart-add-item" style="flex:1;justify-content:center" data-item-quantity="1" ${snipDataAttrs({id:v.sku,name:p.name,price:(onSale?v.salePrice:v.price),image:((v.images&&v.images[v.primary||0])||(v.images&&v.images[0])||colorPrimary(color,p)),description:p.description,weight:p.weight,categories:[snipCat(cat&&cat.name),snipCat(sub&&sub.name)].filter(Boolean),custom:[{name:'Color',value:v.color.label,type:'readonly'},{name:'Size',value:v.size.label,type:'readonly'}]})}>Add to cart</button>`
             : `<button class="btn loom" style="flex:1;justify-content:center" disabled>Sold out</button>`)
         : `<button class="btn loom" style="flex:1;justify-content:center" ${v.inStock?`onclick="addToCart('${p.id}',document.getElementById('pdpQty').textContent,'${pdpSel.colorId}','${pdpSel.sizeId}')"`:'disabled'}>${v.inStock?'Add to cart':'Sold out'}</button>`}
     </div>`;
@@ -1882,8 +1910,9 @@ function snipFeed(){
       optColor(p).values.forEach(c=>optSize(p).values.forEach(sz=>{
         const v=resolveVariant(p,c.id,sz.id);if(!v.inStock)return;
         const price=(v.salePrice!=null&&v.salePrice<v.price)?v.salePrice:v.price;
+        const vimg=(v.images&&v.images[v.primary||0])||(v.images&&v.images[0])||colorPrimary(c,p);
         const e={id:v.sku,name:p.name,price:+(+price).toFixed(2),url,
-          image:colorPrimary(c),description:(p.description||'').slice(0,180),categories:cats};
+          image:vimg,description:(p.description||'').slice(0,180),categories:cats};
         if(p.weight!=null)e.dimensions={weight:Math.round(+p.weight)};
         base.push(e);
       }));
