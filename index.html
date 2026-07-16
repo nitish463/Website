@@ -858,6 +858,11 @@ function allSkus(){
   });
   return out;
 }
+function variantPhotos(ov,colorVal){
+  const raw=(ov&&ov.images||[]).filter(Boolean);
+  if(raw.length)return raw.map(assetUrl);
+  return colorPhotos(colorVal);
+}
 function resolveVariant(p,colorId,sizeId){
   const color=optColor(p).values.find(v=>v.id===colorId)||optColor(p).values[0];
   const size=optSize(p).values.find(v=>v.id===sizeId)||optSize(p).values[0];
@@ -867,7 +872,11 @@ function resolveVariant(p,colorId,sizeId){
   const sku=ov.sku||genSku(p,color,size);
   const baseStock = ov.inStock!=null?ov.inStock : (p.inStock!==false);
   const inStock = invInStock(sku,baseStock);
-  return {color,size,price,salePrice,inStock,images:colorPhotos(color),sku};
+  const hasOwnImgs=((ov.images||[]).filter(Boolean).length>0);
+  const images=variantPhotos(ov,color);
+  const video=hasOwnImgs?(ov.video||''):(color.video||'');
+  const primary=hasOwnImgs?(ov.primary||0):(color.primary||0);
+  return {color,size,price,salePrice,inStock,images,video,primary,sku,ownImages:hasOwnImgs};
 }
 function priceRange(p){
   if(!isCollection(p)){const eff=p.salePrice!=null&&p.salePrice<p.price?p.salePrice:p.price;return{min:eff,max:eff};}
@@ -1623,8 +1632,10 @@ function renderCollection(p){
   const colorOpt=optColor(p),sizeOpt=optSize(p);
   const v=resolveVariant(p,pdpSel.colorId,pdpSel.sizeId);
   const color=optColor(p).values.find(c=>c.id===pdpSel.colorId)||optColor(p).values[0];
-  const {photos,start}=photosWithPrimary(color.images,color.primary);
-  const items=pdpMediaItems(photos.length?photos:[weaveSwatch(color.hex,color.label)],color.video);
+  const ovSel=(p.variants&&p.variants[vKey(v.color.id,v.size.id)])||{};
+  const rawImgs=v.ownImages?(ovSel.images||[]):(color.images||[]);
+  const {photos,start}=photosWithPrimary(rawImgs,v.primary);
+  const items=pdpMediaItems(photos.length?photos:[weaveSwatch(color.hex,color.label)],v.video);
   const onSale=v.salePrice!=null&&v.salePrice<v.price;
 
   const gallery=galleryHTML(items,start);
@@ -3062,12 +3073,34 @@ function variantGroup(p,color,sizeOpt,open){
       <table class="vartable"><thead><tr><th>Size</th><th>SKU code</th><th>Price override</th><th style="text-align:center;width:80px">In stock</th></tr></thead><tbody>
       ${sizeOpt.values.map(s=>{const key=vKey(color.id,s.id);const ov=(p.variants&&p.variants[key])||{};
         const defPrice=(s.price!=null&&s.price!=='')?s.price:(p.basePrice||0);
+        const vimgs=(ov.images||[]).concat(['','','','','','','','']).slice(0,8);
+        const nOwn=(ov.images||[]).filter(Boolean).length;
+        const vprim=ov.primary||0;
         return `<tr>
           <td style="white-space:nowrap">${esc(s.label)}</td>
           <td><input type="text" value="${escAttr(ov.sku||'')}" placeholder="${escAttr(genSku(p,color,s))}" oninput="pVarField('${color.id}','${s.id}','sku',this.value)"></td>
           <td><input type="number" step="0.01" value="${ov.price==null?'':ov.price}" placeholder="${defPrice}" oninput="pVarField('${color.id}','${s.id}','price',this.value)"></td>
           <td style="text-align:center"><input type="checkbox" ${ov.inStock!==false?'checked':''} onchange="pVarField('${color.id}','${s.id}','inStock',this.checked)" style="width:auto"></td>
-        </tr>`}).join('')}
+        </tr>
+        <tr><td colspan="4" style="padding:0 0 10px">
+          <details class="vphotos">
+            <summary style="cursor:pointer;font-size:12.5px;color:${nOwn?'var(--loom)':'var(--ink-soft)'};padding:4px 0">
+              📷 Photos for ${esc(s.label)} — ${nOwn?('<b>'+nOwn+' own photo'+(nOwn>1?'s':'')+'</b>'):'using the color’s photos'}
+            </summary>
+            <div style="padding:8px 0 4px">
+              <p class="hint" style="margin:0 0 8px">Add photos here only if this size looks different from the other sizes in ${esc(color.label)}. Leave blank to reuse the color’s photos. Recommended: square 1600 × 1600 px.</p>
+              <div class="photogrid8">
+                ${vimgs.map((u,i)=>`<div class="photoslot ${vprim===i&&u?'isprim':''}">
+                  <input type="text" value="${escAttr(u)}" placeholder="Photo ${i+1} URL" oninput="pVarPhoto('${color.id}','${s.id}',${i},this.value)">
+                  <button class="pstar ${vprim===i?'on':''}" title="Use as the default photo for this size" onclick="pVarPrimary('${color.id}','${s.id}',${i})">★</button>
+                </div>`).join('')}
+              </div>
+              <div class="field" style="margin-top:10px"><label>Video URL (optional)</label>
+                <input type="text" value="${escAttr(ov.video||'')}" placeholder="Only used when this size has its own photos" oninput="pVarField('${color.id}','${s.id}','video',this.value)"></div>
+              ${nOwn?`<button class="btn ghost sm" style="margin-top:8px" onclick="pVarClearPhotos('${color.id}','${s.id}')">Clear — use the color’s photos instead</button>`:''}
+            </div>
+          </details>
+        </td></tr>`}).join('')}
       </tbody></table>
     </div>
   </details>`;
@@ -3126,6 +3159,9 @@ function pRemoveSize(id){const o=optSize(pDraft);if(o.values.length<=1){toast('K
   if(pDraft.variants)Object.keys(pDraft.variants).forEach(k=>{if(k.split('__')[1]===id)delete pDraft.variants[k];});renderAdmin();}
 function pSizeField(id,f,v){const s=optSize(pDraft).values.find(x=>x.id===id);if(s)s[f]=v;}
 function pVarField(colorId,sizeId,f,v){pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o[f]=v;}
+function pVarPhoto(colorId,sizeId,i,v){pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o.images=o.images||[];while(o.images.length<8)o.images.push('');o.images[i]=v;}
+function pVarPrimary(colorId,sizeId,i){syncBasics();pDraft.variants=pDraft.variants||{};const k=vKey(colorId,sizeId);const o=pDraft.variants[k]||(pDraft.variants[k]={});o.primary=i;renderAdmin();}
+function pVarClearPhotos(colorId,sizeId){syncBasics();const k=vKey(colorId,sizeId);const o=(pDraft.variants||{})[k];if(o){delete o.images;delete o.video;delete o.primary;}renderAdmin();toast('Now using the color’s photos');}
 
 function onCatChange(){
   pDraft.categoryId=val('p_cat');
@@ -3151,6 +3187,12 @@ async function saveProduct(id){
     const vs={};Object.keys(pDraft.variants||{}).forEach(k=>{const o=pDraft.variants[k];
       const price=num(o.price),sale=num(o.salePrice),inStock=o.inStock!==false,sku=(o.sku||'').trim();
       const e={};if(price!=null)e.price=price;if(sale!=null)e.salePrice=sale;if(!inStock)e.inStock=false;if(sku)e.sku=sku;
+      const imgs=(o.images||[]).map(x=>(x||'').trim());
+      if(imgs.filter(Boolean).length){
+        e.images=imgs.slice(0,8);
+        e.primary=Math.max(0,Math.min(o.primary||0,7));
+        const vid=(o.video||'').trim();if(vid)e.video=vid;
+      }
       if(Object.keys(e).length)vs[k]=e;});
     out.options=pDraft.options;out.variants=vs;
     out.basePrice=num(pDraft.basePrice)||0;out.baseSalePrice=num(pDraft.baseSalePrice);
