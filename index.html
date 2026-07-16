@@ -3024,6 +3024,11 @@ function collectionPanels(p){
     <p class="hint" style="margin:-8px 0 14px">Name each color and set its swatch. <b>Photos are set per SKU</b> below, under <b>Variants</b> — so each size can have its own images.</p>
     ${colorOpt.values.map(c=>colorCard(c,true)).join('')}
     <button class="miniadd" onclick="pAddColor()">+ Add color</button>
+    ${(function(){var n=colorOpt.values.reduce(function(a,c){return a+((c.images||[]).filter(Boolean).length);},0);
+      return n?`<div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px">
+        <p class="hint" style="margin:0 0 8px">This product still has <b>${n} old photo${n>1?'s':''}</b> stored on its colors (from the previous setup). They're used only as a fallback for SKUs with no photos of their own.</p>
+        <button class="btn ghost sm" style="border-color:var(--clay);color:var(--clay)" onclick="pClearColorPhotos()">Delete the ${n} old color photo${n>1?'s':''}</button>
+      </div>`:'';})()}
   </div>
 
   <div class="panel">
@@ -3164,6 +3169,15 @@ function pRemoveSize(id){const o=optSize(pDraft);if(o.values.length<=1){toast('K
   o.values=o.values.filter(v=>v.id!==id);
   if(pDraft.variants)Object.keys(pDraft.variants).forEach(k=>{if(k.split('__')[1]===id)delete pDraft.variants[k];});renderAdmin();}
 function pSizeField(id,f,v){const s=optSize(pDraft).values.find(x=>x.id===id);if(s)s[f]=v;}
+function pClearColorPhotos(){
+  syncBasics();
+  var vals=optColor(pDraft).values||[];
+  var n=vals.reduce(function(a,c){return a+((c.images||[]).filter(Boolean).length);},0);
+  if(!n){toast('No color photos to delete');return;}
+  if(!confirm('Delete '+n+' photo'+(n>1?'s':'')+' stored on the colors?\n\nAny SKU without its own photos will show a plain swatch until you add photos under Variants.\n\nThis cannot be undone — export a backup first.'))return;
+  vals.forEach(function(c){c.images=[];c.video='';c.primary=0;});
+  renderAdmin();toast('Deleted — now add photos per SKU under Variants');
+}
 function pVarCopyFromColor(colorId,sizeId){
   syncBasics();
   const c=optColor(pDraft).values.find(x=>x.id===colorId);if(!c)return;
