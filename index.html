@@ -1572,6 +1572,14 @@ function initGallery(){
   // re-measure after layout settles
   requestAnimationFrame(set);
 }
+function compactPhotos(arr,primary){
+  arr=(arr||[]).map(function(x){return (x||'').trim();});
+  var primaryUrl=arr[primary||0];
+  var out=arr.filter(Boolean);
+  var p=primaryUrl?out.indexOf(primaryUrl):0;
+  if(p<0)p=0;
+  return {images:out,primary:p};
+}
 function photosWithPrimary(raw,primary){
   raw=(raw||[]);
   const primaryUrl=raw[primary||0];
@@ -3225,15 +3233,15 @@ async function saveProduct(id){
     material:pDraft.material||'',care:pDraft.care||'',origin:pDraft.origin||'',weight:(pDraft.weight!==''&&pDraft.weight!=null?+pDraft.weight:null),features:(pDraft.features||[]).filter(Boolean)};
   if(draftColl()){
     const colorOpt=optColor(pDraft),sizeOpt=optSize(pDraft);
-    colorOpt.values.forEach(c=>{c.images=(c.images||[]).map(x=>x||'').slice(0,8);c.video=(c.video||'').trim();c.primary=Math.max(0,Math.min(c.primary||0,7));});
+    colorOpt.values.forEach(c=>{const cp=compactPhotos(c.images,c.primary);c.images=cp.images;c.primary=cp.primary;c.video=(c.video||'').trim();if(!c.video)delete c.video;if(!c.images.length){delete c.images;delete c.primary;}});
     sizeOpt.values.forEach(s=>{s.price=num(s.price);s.salePrice=num(s.salePrice);});
     const vs={};Object.keys(pDraft.variants||{}).forEach(k=>{const o=pDraft.variants[k];
       const price=num(o.price),sale=num(o.salePrice),inStock=o.inStock!==false,sku=(o.sku||'').trim();
       const e={};if(price!=null)e.price=price;if(sale!=null)e.salePrice=sale;if(!inStock)e.inStock=false;if(sku)e.sku=sku;
-      const imgs=(o.images||[]).map(x=>(x||'').trim());
-      if(imgs.filter(Boolean).length){
-        e.images=imgs.slice(0,8);
-        e.primary=Math.max(0,Math.min(o.primary||0,7));
+      const cp=compactPhotos(o.images,o.primary);
+      if(cp.images.length){
+        e.images=cp.images;
+        if(cp.primary)e.primary=cp.primary;
         const vid=(o.video||'').trim();if(vid)e.video=vid;
       }
       if(Object.keys(e).length)vs[k]=e;});
@@ -3242,10 +3250,11 @@ async function saveProduct(id){
     out.skuPrefix=(pDraft.skuPrefix||'').trim();out.inStock=true;
   }else{
     out.price=num(pDraft.price)||0;out.salePrice=num(pDraft.salePrice);
-    out.images=(pDraft.images||[]).map(x=>x||'').slice(0,8);
+    const sp=compactPhotos(pDraft.images,pDraft.primary);
+    out.images=sp.images;
     out.video=(pDraft.video||'').trim();
-    out.primary=Math.max(0,Math.min(pDraft.primary||0,7));
-    out.image=out.images[out.primary]||out.images.find(Boolean)||'';
+    out.primary=sp.primary;
+    out.image=out.images[out.primary]||out.images[0]||'';
     out.swatch=pDraft.swatch||'#C9BBA6';out.inStock=pDraft.inStock!==false;
   }
   if(id==='new')DB.products.push(out);else{const i=DB.products.findIndex(x=>x.id===id);DB.products[i]=out;}
